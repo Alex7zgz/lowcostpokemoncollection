@@ -298,6 +298,39 @@ body.albopen .ytp{display:none}
 #ldlg.bt .bigfoto{width:auto;max-width:100%;max-height:calc(100vh - 250px);max-height:calc(100dvh - 250px);object-fit:contain}
 .fl{width:24px;height:16px;border-radius:2px;vertical-align:-3px;box-shadow:0 0 0 1px rgba(0,0,0,.25)}
 .lgsel{position:relative;display:inline-block}
+.podio{margin:0 0 22px;padding:12px 14px 0;background:var(--panel);border:1px solid var(--line);border-radius:14px}
+.pdh{display:flex;justify-content:space-between;align-items:center;gap:8px;flex-wrap:wrap}
+.pdh h3{margin:0;font:800 17px "Bricolage Grotesque",sans-serif}.pdh small{font:500 12px "DM Sans",sans-serif;color:var(--mute);margin-left:6px}
+.pdh button{border:1px solid var(--line);background:#fff;color:#111;border-radius:99px;padding:5px 12px;font-size:12px;cursor:pointer}
+.pdhint{margin:8px 0 12px;font-size:13px;color:var(--mute)}
+.pd{display:flex;justify-content:center;align-items:flex-end;gap:10px;margin-top:8px}
+.pdc{width:min(30%,124px);display:flex;flex-direction:column;align-items:center;text-align:center;cursor:pointer}
+.pdc:empty{cursor:default}
+.pdp{background:#FFD43B;color:#5a3b00;padding:2px 9px;border-radius:99px;font-weight:800;font-size:13px;margin-bottom:5px;white-space:nowrap}
+.pdc img{width:100%;aspect-ratio:5/7;object-fit:contain;border-radius:6px;box-shadow:0 3px 9px rgba(0,0,0,.35)}
+.pdn{font-size:11px;margin:5px 0 4px;max-width:100%;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.pdb{width:100%;display:grid;place-items:center;border-radius:8px 8px 0 0;color:#fff;font:800 22px "Bricolage Grotesque",sans-serif;text-shadow:0 1px 2px rgba(0,0,0,.4)}
+.p1 .pdb{height:62px;background:linear-gradient(#f5c542,#c99700)}.p2 .pdb{height:44px;background:linear-gradient(#cfd6de,#8d99a6)}.p3 .pdb{height:32px;background:linear-gradient(#d9985c,#9a5b25)}
+.pdb i{font-style:normal}
+#tdlg{max-width:min(860px,96vw)}.tgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(96px,1fr));gap:8px;padding:12px 16px;max-height:58vh;overflow:auto}
+.tc{border:1px solid var(--line);border-radius:8px;background:var(--bg);padding:4px;cursor:pointer;display:flex;flex-direction:column;gap:3px;font-size:10.5px;color:var(--ink)}
+.tc img{width:100%;aspect-ratio:5/7;object-fit:contain}.tc:hover{outline:2px solid var(--accent)}
+.tcgb{margin:6px 0}.tcgb>span{display:block;margin-bottom:4px}.tcgcur{font-size:13px;margin-bottom:6px;color:var(--mute)}
+#tcgfind,#tcgdel{background:#fff;color:#000;border-color:#bbb}
+.podio{position:relative;overflow:hidden;color:#1c2a3a}
+.podio>*:not(.sky){position:relative;z-index:1}
+.podio h3{color:#1c2a3a}.podio .pdh small,.podio .pdhint{color:#4a5d75}.podio .pdn{color:#1c2a3a}
+.sky{position:absolute!important;inset:0;overflow:hidden;pointer-events:none;background:linear-gradient(#a9d8ff 0,#d6ecff 55%,#f2f9ff 100%);z-index:0}
+.p1 .pdp{background:#FFD43B;color:#5a3b00}
+.p2 .pdp{background:#D5DBE3;color:#33404f;box-shadow:inset 0 0 0 1px #aab4c0}
+.p3 .pdp{background:#E0A06A;color:#4a2a0c;box-shadow:inset 0 0 0 1px #b87b46}
+@media (prefers-reduced-motion:reduce){.sky *,.sky::before{animation:none!important}}
+.cl{position:absolute;left:-25%;width:90px;height:24px;border-radius:30px;background:#fff;opacity:.9;animation:cdrift var(--d,40s) linear var(--dl,0s) infinite;filter:drop-shadow(0 2px 3px rgba(60,110,170,.18))}
+.cl::before,.cl::after{content:"";position:absolute;background:#fff;border-radius:50%}
+.cl::before{width:44px;height:44px;left:14px;top:-22px}.cl::after{width:34px;height:34px;left:48px;top:-14px}
+.c1{top:18%;--d:36s;--dl:-6s}.c2{top:46%;--d:50s;--dl:-30s;transform:scale(1.3)}.c3{top:70%;--d:42s;--dl:-18s;opacity:.75}
+.c4{top:32%;--d:62s;--dl:-44s;transform:scale(.8);opacity:.7}.c5{top:82%;--d:56s;--dl:-9s;transform:scale(1.1);opacity:.8}
+@keyframes cdrift{from{left:-25%}to{left:110%}}
 </style>
 </head>
 <body>
@@ -310,6 +343,7 @@ body.albopen .ytp{display:none}
 <section class="stats dexonly" id="stats"></section>
 <div class="gens dexonly" id="gens"></div>
 <p class="toast" id="toast" hidden></p>
+<div class="podio" id="podio"><div class="sky" id="sky" aria-hidden="true"><i class="cl c1"></i><i class="cl c2"></i><i class="cl c3"></i><i class="cl c4"></i><i class="cl c5"></i></div><div id="podc"></div></div>
 <div class="gst" id="gstats" hidden></div>
 <div class="tools">
 <input type="search" id="q" name="filtro-cartas-pokedex" placeholder="Buscar por nombre o número" aria-label="Buscar" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false">
@@ -410,30 +444,31 @@ function open_(key,big){
  $("dh").style.cssText=`--c:${k};--t:${ink(k)}`;
  $("dh").innerHTML=`<h2>${c.name}</h2><div>${c.en?c.en+" · ":""}${c.dex} · ${c.type} · ${c.gen}</div>`;
  const row=(a,b)=>`<dt>${a}</dt><dd>${b||"—"}</dd>`;
- $("dl").innerHTML=(c.url?`<dt>Wikidex</dt><dd><a class="lnk" style="margin:0" href="${c.url}" target="_blank" rel="noopener">Ver ${c.name}</a></dd>`:"")+(c.owned?row("Carta",c.card)+row("Set",c.set)+row("Nº de carta",c.num)+row("Condición",c.cond)+row("Idioma",c.lang&&LN[c.lang]?flagSvg(c.lang)+" "+LN[c.lang]:"")+row("Adquirida",c.date)+row("Precio",eur(c.price))+row("Comentarios",c.note)+(c.cm&&/^https?:\/\//i.test(c.cm)?`<dt>Cardmarket</dt><dd><a class="lnk" style="margin:0" href="${esc(c.cm)}" target="_blank" rel="noopener">Ver en Cardmarket</a></dd>`:""):`<dt>Estado</dt><dd>Todavía no tienes esta carta</dd>`);
+ $("dl").innerHTML=(c.url?`<dt>Wikidex</dt><dd><a class="lnk" style="margin:0" href="${c.url}" target="_blank" rel="noopener">Ver ${c.name}</a></dd>`:"")+(c.owned?row("Carta",c.card)+row("Set",c.set)+row("Nº de carta",c.num)+row("Condición",c.cond)+row("Idioma",c.lang&&LN[c.lang]?flagSvg(c.lang)+" "+LN[c.lang]:"")+row("Valor carta",p7txt(c))+row("Adquirida",c.date)+row("Precio carta",eur(c.price))+row("Comentarios",c.note)+(c.cm&&/^https?:\/\//i.test(c.cm)?`<dt>Cardmarket</dt><dd><a class="lnk" style="margin:0" href="${esc(c.cm)}" target="_blank" rel="noopener">Ver en Cardmarket</a></dd>`:""):`<dt>Estado</dt><dd>Todavía no tienes esta carta</dd>`);
  CUR=c;media(c);$("ed").hidden=true;$("msg").hidden=true;$("dl").hidden=false;$("edit").hidden=!CAN;$("edit").textContent=c.owned?"Editar carta":"Añadir carta";$("edit").classList.toggle("add",!c.owned);$("edit").classList.toggle("pri",c.owned);
  if(!$("dlg").open)$("dlg").showModal();
 }
-const FL=[["set","Set","text"],["num","Nº de carta","text"],["card","Nombre de la carta","text"],["date","Fecha de adquisición","date"],["cond","Condición","text"],["lang","Idioma","text"],["price","Precio de compra (€)","text"],["note","Comentarios","text"],["cm","Enlace de Cardmarket (opcional)","url"]];
-function apply(){[...all,...REGF].forEach(c=>{Object.assign(c,c._b,O[c.key]||{});c.cond=CM[String(c.cond||"").toLowerCase()]||c.cond;c.owned=!!(c.set||c.num||c.card)});stats();gens();render()}
+const FL=[["set","Set","text"],["num","Nº de carta","text"],["card","Nombre de la carta","text"],["date","Fecha de adquisición","date"],["cond","Condición","text"],["lang","Idioma","text"],["price","Precio carta (€)","text"],["note","Comentarios","text"],["cm","Enlace de Cardmarket de la carta","url"]];
+function apply(){[...all,...REGF].forEach(c=>{Object.assign(c,c._b,O[c.key]||{});c.cond=CM[String(c.cond||"").toLowerCase()]||c.cond;c.owned=!!(c.set||c.num||c.card)});stats();gens();render();renderPodio()}
 function editForm(){
  const c=CUR;let pend;
- $("ed").innerHTML=FL.map(([k,l,ty])=>k==="cond"?`<label>${l}<select id="f-cond"><option value="">Sin indicar</option>${[...CO,...(c.cond&&!CO.some(o=>o[0]===c.cond)?[[c.cond,c.cond]]:[])].map(([v,n])=>`<option value="${v}"${c.cond===v?" selected":""}>${n}</option>`).join("")}</select></label>`:k==="lang"?langHTML(c):`<label>${l}<input type="${ty}" autocomplete="off" id="f-${k}" value="${(c[k]??"").toString().replace(/"/g,"&quot;")}"></label>`).join("")+`<div class="fotob"><span>Foto de la carta</span><div class="row2"><label class="dclose fbtn">Hacer foto<input type="file" id="f-cam" accept="image/*" capture="environment" hidden></label><label class="dclose fbtn">Elegir imagen<input type="file" id="f-foto" accept="image/*" hidden></label></div><p style="margin:8px 0 0;font-size:12.5px;color:var(--mute)">Al subir la foto se abre el recorte: la carta se detecta sola y solo tienes que confirmar.</p></div><div id="fprev"></div><div class="row"><button class="dclose pri" id="save" style="margin:0">Guardar</button><button class="dclose" id="cancel" style="margin:0">Cancelar</button>${c.owned?'<button class="dclose clr" id="clear" style="margin:0">Vaciar carta</button>':""}</div>`;
+ $("ed").innerHTML=FL.map(([k,l,ty])=>k==="cond"?`<label>${l}<select id="f-cond"><option value="">Sin indicar</option>${[...CO,...(c.cond&&!CO.some(o=>o[0]===c.cond)?[[c.cond,c.cond]]:[])].map(([v,n])=>`<option value="${v}"${c.cond===v?" selected":""}>${n}</option>`).join("")}</select></label>`:k==="lang"?langHTML(c):`<label>${l}<input type="${ty}" autocomplete="off" id="f-${k}" value="${(c[k]??"").toString().replace(/"/g,"&quot;")}"></label>`).join("")+`${tcgHTML(c)}<div class="fotob"><span>Foto de la carta</span><div class="row2"><label class="dclose fbtn">Hacer foto<input type="file" id="f-cam" accept="image/*" capture="environment" hidden></label><label class="dclose fbtn">Elegir imagen<input type="file" id="f-foto" accept="image/*" hidden></label></div><p style="margin:8px 0 0;font-size:12.5px;color:var(--mute)">Al subir la foto se abre el recorte: la carta se detecta sola y solo tienes que confirmar.</p></div><div id="fprev"></div><div class="row"><button class="dclose pri" id="save" style="margin:0">Guardar</button><button class="dclose" id="cancel" style="margin:0">Cancelar</button>${c.owned?'<button class="dclose clr" id="clear" style="margin:0">Vaciar carta</button>':""}</div>`;
  $("dl").hidden=true;$("edit").hidden=true;$("ed").hidden=false;
  const prev=u=>{$("fprev").innerHTML=u?`<img src="${u}" alt=""><button type="button" class="dclose" id="fdel" style="margin:6px 0 0">Quitar foto</button>`:"";if($("fdel"))$("fdel").onclick=()=>{pend=null;prev(null)}};
  fotoGet(c.key).then(f=>{if(f&&pend===undefined)prev(f)});
  let lastF=null;const proc=async()=>{if(!lastF)return;try{const u=await cropDialog(lastF);if(u){pend=u;prev(u)}}catch(_){$("msg").hidden=false;$("msg").textContent="No se ha podido leer esa imagen."}};
  const pick=e=>{const f=e.target.files[0];if(f){lastF=f;proc()}e.target.value=""};$("f-foto").onchange=pick;$("f-cam").onchange=pick;
+ $("valopen").onclick=()=>{const u=$("f-cm").value.trim();if(/^https?:\/\//i.test(u))window.open(u,"_blank","noopener");else{$("msg").hidden=false;$("msg").textContent="Primero pega el enlace de Cardmarket de la carta en su campo."}};
  const put=data=>{try{if(Object.values(data).every(x=>x===null))delete O[c.key];else O[c.key]=data;persist();apply();open_(c.key)}catch(e){$("msg").hidden=false;$("msg").textContent="No se ha podido guardar. Inténtalo de nuevo."}};
  $("cancel").onclick=()=>open_(c.key);
- $("save").onclick=async()=>{const v=k=>$("f-"+k).value.trim();const p=parseFloat(v("price").replace(",","."));const cm=v("cm");if(cm&&!/^https?:\/\//i.test(cm)){$("msg").hidden=false;$("msg").textContent="El enlace de Cardmarket debe empezar por https://";return}if(pend!==undefined)await savePhoto(c.key,pend);
-  put({set:v("set")||null,num:v("num")||null,card:v("card")||null,date:v("date")||null,cond:v("cond")||null,price:isNaN(p)?null:p,note:v("note")||null,cm:cm||null,lang:v("lang")||null})};
- if($("clear"))$("clear").onclick=async()=>{await savePhoto(c.key,null);put({set:null,num:null,card:null,date:null,cond:null,price:null,note:null,cm:null,lang:null})};
+ $("save").onclick=async()=>{const v=k=>$("f-"+k).value.trim();const p=parseFloat(v("price").replace(",","."));const cm=v("cm"),pv=parseEur(v("val")),nv=pv===null?null:String(pv),nvd=nv===null?null:(nv===c.val?(c.vdt||today()):today());if(cm&&!/^https?:\/\//i.test(cm)){$("msg").hidden=false;$("msg").textContent="El enlace de Cardmarket debe empezar por https://";return}if(pend!==undefined)await savePhoto(c.key,pend);
+  put({set:v("set")||null,num:v("num")||null,card:v("card")||null,date:v("date")||null,cond:v("cond")||null,price:isNaN(p)?null:p,note:v("note")||null,cm:cm||null,lang:v("lang")||null,val:nv,vdt:nvd})};
+ if($("clear"))$("clear").onclick=async()=>{await savePhoto(c.key,null);put({set:null,num:null,card:null,date:null,cond:null,price:null,note:null,cm:null,lang:null,val:null,vdt:null})};
 }
 $("edit").onclick=editForm;
 const CO=[["NM","Near Mint"],["EX","Excellent"],["GD","Good"]],CM={nm:"NM",ex:"EX",gd:"GD","near mint":"NM",excellent:"EX",good:"GD"};
 // IMPORTANTE: no cambiar esta clave en futuras versiones; con ella cada navegador conserva su progreso entre actualizaciones.
-const KEY="pokecards-progreso-v1",FK=["set","num","card","date","cond","price","note","cm","lang"];CAN=true;
+const KEY="pokecards-progreso-v1",FK=["set","num","card","date","cond","price","note","cm","lang","val","vdt"];CAN=true;
 try{O=JSON.parse(localStorage.getItem(KEY)||"{}")||{}}catch(e){try{localStorage.setItem(KEY+"-ilegible",localStorage.getItem(KEY))}catch(_){}O={}}
 function persist(){try{localStorage.setItem(KEY,JSON.stringify(O))}catch(e){toast("No se pudo guardar en este navegador.")}}
 const toast=t=>{$("toast").hidden=false;$("toast").textContent=t;clearTimeout(toast.t);toast.t=setTimeout(()=>$("toast").hidden=true,6000)};
@@ -445,7 +480,7 @@ $("imp").onclick=()=>$("impf").click();
 $("impf").onchange=e=>{const f=e.target.files[0];if(!f)return;const r=new FileReader();r.onload=async()=>{try{const j=JSON.parse(r.result),src=j.cartas||j;let n=0;
   Object.entries(src).forEach(([k,v])=>{if(!ENT[k]||!v||typeof v!=="object")return;const o={};FK.forEach(f=>{let x=v[f];o[f]=f==="price"?(typeof x==="number"&&isFinite(x)?x:null):(typeof x==="string"&&x?x.slice(0,300):null)});if(o.cm&&!/^https?:\/\//i.test(o.cm))o.cm=null;if(o.lang&&!LN[o.lang])o.lang=null;O[k]=o;n++});
   for(const [k,u] of Object.entries(j.fotos||{}))if(ENT[k]&&typeof u==="string"&&u.startsWith("data:image/"))await savePhoto(k,u);persist();apply();toast("Progreso importado: "+n+" cartas.")}catch(err){toast("No se ha podido leer ese archivo.")}};r.readAsText(f);e.target.value=""};
-$("xls").onclick=async()=>{const rows=[...all,...REGF].map(c=>({"Nº":c.dex,"Pokémon":c.name,"Tipo":c.type,"Generación":c.gen,"¿La tengo?":c.owned?"Sí":"No","Carta":c.card||"","Set":c.set||"","Nº de carta":c.num||"","Condición":c.cond||"","Idioma":c.lang&&LN[c.lang]?LN[c.lang]:"","Fecha de adquisición":c.date||"","Precio (€)":typeof c.price==="number"?c.price:"","Comentarios":c.note||"","Cardmarket":c.cm||""}));
+$("xls").onclick=async()=>{const rows=[...all,...REGF].map(c=>({"Nº":c.dex,"Pokémon":c.name,"Tipo":c.type,"Generación":c.gen,"¿La tengo?":c.owned?"Sí":"No","Carta":c.card||"","Set":c.set||"","Nº de carta":c.num||"","Condición":c.cond||"","Idioma":c.lang&&LN[c.lang]?LN[c.lang]:"","Valor carta (€)":valOf(c)??"","Fecha de adquisición":c.date||"","Precio carta (€)":typeof c.price==="number"?c.price:"","Comentarios":c.note||"","Cardmarket":c.cm||""}));
  const res=D.gens.map(g=>{const a=all.filter(c=>c.gen===g.id),o=a.filter(c=>c.owned),p=o.filter(c=>typeof c.price==="number"),t=p.reduce((s,c)=>s+c.price,0);return {"Generación":g.id.replace("GEN","Gen"),"Conseguidas":o.length,"Total":a.length,"Gasto total (€)":t,"Gasto medio (€)":p.length?Math.round(t/p.length*100)/100:""}});
  try{if(!window.XLSX)throw 0;const wb=XLSX.utils.book_new(),w=XLSX.utils.json_to_sheet(rows);w["!cols"]=[8,26,12,16,11,26,24,12,14,20,11,30].map(x=>({wch:x}));XLSX.utils.book_append_sheet(wb,w,"Cartas");XLSX.utils.book_append_sheet(wb,XLSX.utils.json_to_sheet(res),"Resumen por generación");
   await saveFile("mi-coleccion-pokemon-"+today()+".xlsx",new Blob([XLSX.write(wb,{bookType:"xlsx",type:"array"})],{type:"application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"}));toast("Excel generado.")}
@@ -543,7 +578,7 @@ async function media(c){const box=$("pimg");box.innerHTML="";box.hidden=true;con
 const THUMB={},Q=new Map();let qt=0;
 const shrinkURL=(u,m)=>new Promise((res,rej)=>{const im=new Image();im.onload=()=>{const sc=Math.min(1,m/Math.max(im.width,im.height)),cv=document.createElement("canvas");cv.width=Math.round(im.width*sc);cv.height=Math.round(im.height*sc);cv.getContext("2d").drawImage(im,0,0,cv.width,cv.height);res(enc(cv,/^data:image\/(webp|png)/.test(u),.8))};im.onerror=rej;im.src=u});
 async function savePhoto(k,big){await fotoSet(k,big);if(big){const t=await shrinkURL(big,240).catch(()=>null);await fotoSet("t:"+k,t);if(t)THUMB[k]=t;else delete THUMB[k]}else{await fotoSet("t:"+k,null);delete THUMB[k]}}
-async function loadThumbs(){const a=await fotoAll();for(const k of Object.keys(a)){if(k.startsWith("t:"))continue;if(a["t:"+k])THUMB[k]=a["t:"+k];else{const t=await shrinkURL(a[k],240).catch(()=>null);if(t){THUMB[k]=t;fotoSet("t:"+k,t)}}}hydrate();stats();if(S.sort==="ph")render();renderAlbum()}
+async function loadThumbs(){const a=await fotoAll();for(const k of Object.keys(a)){if(k.startsWith("t:"))continue;if(a["t:"+k])THUMB[k]=a["t:"+k];else{const t=await shrinkURL(a[k],240).catch(()=>null);if(t){THUMB[k]=t;fotoSet("t:"+k,t)}}}hydrate();stats();if(S.sort==="ph")render();renderAlbum();renderPodio()}
 const IOs=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){IOs.unobserve(e.target);loadPic(e.target)}}),{rootMargin:"250px"});
 function setPic(sl,u,ph){const p=sl.querySelector(".pic");if(p&&u)p.innerHTML=`<img src="${u}" alt="" referrerpolicy="no-referrer"${ph?' class="ph"':""} onerror="this.remove()">`}
 function fallbackPic(sl,c){if(c.gen!=="Forma regional")setPic(sl,ART+(+c.dex.slice(1))+".png")}
@@ -556,7 +591,7 @@ async function flush(){const it=[...Q.entries()].slice(0,40);it.forEach(([t])=>Q
 $("pimg").onclick=e=>{if(e.target.dataset.foto){$("ldlg").classList.add("bt");$("lt").textContent=CUR.card||CUR.name;$("lb").innerHTML=`<img class="bigfoto" src="${e.target.src}" alt="">`;$("ldlg").showModal()}};
 const esc=x=>String(x??"").replace(/[&<>"]/g,m=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[m])),fdt=d=>d?d.split("-").reverse().join("/"):"—";
 const tr=c=>`<tr><td>${c.dex}</td><td>${esc(c.name)}</td><td>${esc(c.card)||"—"}</td><td>${esc(c.set)||"—"}</td><td>${esc(c.num)||"—"}</td><td>${esc(c.cond)||"—"}</td><td>${c.lang&&LN[c.lang]?flagSvg(c.lang):"—"}</td><td>${fdt(c.date)}</td><td>${eur(c.price)}</td><td>${esc(c.note)||"—"}</td></tr>`;
-const tbl=l=>`<div class="tw"><table class="ltab"><colgroup><col style="width:5%"><col style="width:12%"><col style="width:15%"><col style="width:13%"><col style="width:9%"><col style="width:10%"><col style="width:7%"><col style="width:10%"><col style="width:8%"><col style="width:11%"></colgroup><thead><tr><th>Nº</th><th>Pokémon</th><th>Carta</th><th>Set</th><th>Nº de carta</th><th>Condición</th><th>Idioma</th><th>Adquirida</th><th>Precio</th><th>Comentarios</th></tr></thead><tbody>${l.map(tr).join("")}</tbody></table></div>`;
+const tbl=l=>`<div class="tw"><table class="ltab"><colgroup><col style="width:5%"><col style="width:12%"><col style="width:15%"><col style="width:13%"><col style="width:9%"><col style="width:10%"><col style="width:7%"><col style="width:10%"><col style="width:8%"><col style="width:11%"></colgroup><thead><tr><th>Nº</th><th>Pokémon</th><th>Carta</th><th>Set</th><th>Nº de carta</th><th>Condición</th><th>Idioma</th><th>Adquirida</th><th>Precio carta</th><th>Comentarios</th></tr></thead><tbody>${l.map(tr).join("")}</tbody></table></div>`;
 function listDlg(k){$("ldlg").classList.remove("bt");const own=all.filter(c=>c.owned);let t,h;
  if(k==="own"){t=`Cartas conseguidas · ${own.length} / ${all.length}`;h=own.length?tbl(own):`<p class="empty">Todavía no has añadido ninguna carta.</p>`}
  else{const p=own.filter(c=>typeof c.price==="number");t=`Gastado en total · ${eur(p.reduce((s,c)=>s+c.price,0))}`;
@@ -632,7 +667,18 @@ const flagSvg=v=>FLG[v]?`<svg class="fl" viewBox="0 0 30 20" aria-hidden="true">
 const langHTML=c=>`<label for="f-lang">Idioma<div class="lgsel"><button type="button" class="tbtn" id="f-langb">${c.lang&&LN[c.lang]?flagSvg(c.lang)+" "+LN[c.lang]:"Elegir idioma"} ▾</button><div class="tlist" id="f-langl" hidden>${Object.keys(LN).map(k=>`<div class="topt" data-v="${k}">${flagSvg(k)} ${LN[k]}</div>`).join("")}<div class="topt" data-v="">Sin indicar</div></div><input type="hidden" id="f-lang" value="${c.lang||""}"></div></label>`;
 $("ed").addEventListener("click",e=>{const l=$("f-langl");if(!l)return;if(e.target.closest("#f-langb")){l.hidden=!l.hidden;return}const o=e.target.closest("#f-langl .topt");if(o){const v=o.dataset.v;$("f-lang").value=v;$("f-langb").innerHTML=(v?flagSvg(v)+" "+LN[v]:"Elegir idioma")+" ▾";l.hidden=true}});
 document.addEventListener("click",e=>{const l=$("f-langl");if(l&&!l.hidden&&!e.target.closest("#f-langl,#f-langb"))l.hidden=true});
-$("close").onclick=()=>$("dlg").close();loadThumbs();setInterval(()=>{TOPI++;stats()},60000);
+// ===== Valor carta (precio medio de 7 días de Cardmarket, escrito a mano) =====
+const eur2=n=>n.toLocaleString("es-ES",{minimumFractionDigits:2,maximumFractionDigits:2})+" €";
+function parseEur(t){t=String(t||"").replace(/[^\d.,]/g,"");if(!t)return null;if(t.includes(",")&&t.includes("."))t=t.replace(/\./g,"");t=t.replace(",",".");const n=parseFloat(t);return isFinite(n)&&n>=0?n:null}
+const valOf=c=>c.owned&&c.val!=null&&c.val!==""&&isFinite(+c.val)?+c.val:null;
+const p7txt=c=>{const v=valOf(c);if(v===null)return "";const d=c.vdt?Math.floor((Date.now()-new Date(c.vdt+"T12:00:00"))/864e5):null;return `${eur2(v)} <small>(${c.vdt?"actualizado el "+fdt(c.vdt)+(d>7?" · conviene revisarlo":""):"sin fecha"})</small>`};
+const tcgHTML=c=>`<div class="tcgb"><label for="f-val">Valor carta (€) · precio medio de 7 días en Cardmarket<input type="text" inputmode="decimal" autocomplete="off" id="f-val" value="${esc(c.val!=null&&c.val!==""?String(c.val).replace(".",","):"")}" placeholder="Ej.: 33,84"></label><div class="row2" style="margin-top:6px"><button type="button" class="dclose" id="valopen" style="margin:0;background:#fff;color:#000;border-color:#bbb">Abrir carta en Cardmarket</button></div><p class="tcgcur">Pega el enlace de la carta en «Enlace de Cardmarket», ábrela con este botón, copia el «Precio medio de 7 días» y escríbelo aquí. La web guarda la fecha de la última vez que lo cambias.</p></div>`;
+function renderPodio(){const el=$("podc");if(!el)return;const rk=[...all,...REGF].filter(c=>valOf(c)!==null).sort((a,b)=>valOf(b)-valOf(a)).slice(0,3);
+ if(!rk.length){el.innerHTML='<div class="pdh"><h3>Top 3 cartas mejor valoradas de mi colección</h3></div><p class="pdhint">Al editar una carta, escribe su «Valor carta» (precio medio de 7 días en Cardmarket) y aquí aparecerán las 3 mejor valoradas.</p>';return}
+ const slot=(c,pos)=>c?`<div class="pdc p${pos}" data-k="${c.key}"><b class="pdp">${eur2(valOf(c))}</b><img src="${THUMB[c.key]||IMGC[c.key]||""}" alt="${esc(c.name)}" onerror="this.style.visibility='hidden'"><span class="pdn">${esc(c.card||c.name)}</span><div class="pdb"><i>${pos}</i></div></div>`:'<div class="pdc"></div>';
+ el.innerHTML=`<div class="pdh"><h3>Top 3 cartas mejor valoradas de mi colección <small>valor carta · precio medio 7 días en Cardmarket</small></h3></div><div class="pd">${slot(rk[1],2)}${slot(rk[0],1)}${slot(rk[2],3)}</div>`}
+$("podio").onclick=e=>{const k=e.target.closest(".pdc[data-k]");if(k)open_(k.dataset.k)};
+$("close").onclick=()=>$("dlg").close();loadThumbs();renderPodio();setInterval(()=>{TOPI++;stats()},60000);
 function fit(){return;document.querySelectorAll(".slot").forEach(sl=>{const p=sl.querySelector(".pic"),b=sl.querySelector(".body"),t=sl.querySelector(".top");if(!p||!b||!t)return;p.style.height="0px";const cs=getComputedStyle(b),pad=parseFloat(cs.paddingTop)+parseFloat(cs.paddingBottom);let th=0;[...b.children].forEach(c=>{if(c!==p)th+=c.offsetHeight});p.style.height=Math.max(0,Math.floor(sl.clientHeight-t.offsetHeight-pad-th-6))+"px"})}
 addEventListener("resize",fit);$("grid").addEventListener("toggle",()=>requestAnimationFrame(fit),true);if(document.fonts&&document.fonts.ready)document.fonts.ready.then(fit);fit();
 apply();
