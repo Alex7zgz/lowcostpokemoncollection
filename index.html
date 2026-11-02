@@ -361,6 +361,14 @@ em.up,td.up{color:#1f9d55;font-style:normal;font-weight:700}em.down,td.down{colo
 #shcard{background:linear-gradient(135deg,#ff7eb3,#ff5e62)!important;color:#fff!important;border-color:transparent!important;font-weight:700}
 #shcard::before{content:"📤 "}
 .selw{margin-bottom:16px}.xclr{z-index:3;padding:4px 8px;margin-left:-4px;font-size:12px}.tools{margin-bottom:8px}
+.tools{align-items:flex-start}
+.tbtn,.tools input[type=search],.seg{height:38px;box-sizing:border-box}.seg button{height:100%}
+#fsetb{max-width:170px;overflow:hidden;text-overflow:ellipsis}
+.brk{display:none}
+#shgo{background:linear-gradient(135deg,#34c38f,#1f9d6b)!important;color:#fff!important;border-color:transparent!important;font-weight:700}
+@media (max-width:700px){
+.tools #q{order:1}.tools [data-w=type]{order:2}.b1{order:3}.tools [data-w=sort]{order:4}.tools [data-w=lang]{order:5}.tools [data-w=cond]{order:6}.b2{order:7}.tools [data-w=set]{order:8}.tools .seg{order:9}
+.brk{display:block;flex:0 0 100%;height:0;margin:0;padding:0}}
 </style>
 </head>
 <body>
@@ -378,11 +386,11 @@ em.up,td.up{color:#1f9d55;font-style:normal;font-weight:700}em.down,td.down{colo
 <div class="gst" id="gstats" hidden></div>
 <div class="tools">
 <input type="search" id="q" name="filtro-cartas-pokedex" placeholder="Buscar por nombre o número" aria-label="Buscar" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false">
-<span class="selw dexonly"><select id="type" aria-label="Tipo" hidden></select><button type="button" class="tbtn" id="tbtn" aria-haspopup="listbox" aria-expanded="false">Tipos ▾</button><div class="tlist" id="tlist" role="listbox" hidden></div><button type="button" class="xclr" id="xtype" hidden>✕ Quitar</button></span>
-<span class="selw dexonly"><select id="sort" hidden aria-label="Ordenar fichas rellenadas" title="Ordena las fichas rellenadas dentro de cada generación"><option value="" selected disabled hidden>Ordenar por</option><option value="dex">Pokédex</option><option value="dr">Pokédex invertida</option><option value="pd">Más cara → más barata</option><option value="pa">Más barata → más cara</option><option value="da">Más antigua → más nueva</option><option value="dd">Más nueva → más antigua</option><option value="ph">Primero con foto</option></select><button type="button" class="tbtn" id="sbtn" aria-haspopup="listbox" aria-expanded="false">Ordenar por ▾</button><div class="tlist" id="slist" role="listbox" hidden></div><button type="button" class="xclr" id="xsort" hidden>✕ Quitar</button></span>
-<span class="selw dexonly"><select id="flang" hidden aria-label="Idioma"><option value="">Idioma</option><option value="es">Español</option><option value="en">Inglés</option><option value="ja">Japonés</option><option value="ko">Coreano</option></select><button type="button" class="tbtn" id="flangb" aria-haspopup="listbox" aria-expanded="false">Idioma ▾</button><div class="tlist" id="flangl" role="listbox" hidden></div><button type="button" class="xclr" id="xflang" hidden>✕ Quitar</button></span>
-<span class="selw dexonly"><select id="fcond" hidden aria-label="Condición"><option value="">Condición</option><option value="NM">Near Mint (NM)</option><option value="EX">Excellent (EX)</option><option value="GD">Good (GD)</option></select><button type="button" class="tbtn" id="fcondb" aria-haspopup="listbox" aria-expanded="false">Condición ▾</button><div class="tlist" id="fcondl" role="listbox" hidden></div><button type="button" class="xclr" id="xfcond" hidden>✕ Quitar</button></span>
-<span class="selw dexonly"><button type="button" class="tbtn" id="fsetb" aria-haspopup="listbox">Set ▾</button><div class="tlist" id="fsetl" hidden></div><button type="button" class="xclr" id="xfset" hidden>✕ Quitar</button></span>
+<span class="selw dexonly" data-w="type"><select id="type" aria-label="Tipo" hidden></select><button type="button" class="tbtn" id="tbtn" aria-haspopup="listbox" aria-expanded="false">Tipos ▾</button><div class="tlist" id="tlist" role="listbox" hidden></div><button type="button" class="xclr" id="xtype" hidden>✕ Quitar</button></span>
+<span class="selw dexonly" data-w="sort"><select id="sort" hidden aria-label="Ordenar fichas rellenadas" title="Ordena las fichas rellenadas dentro de cada generación"><option value="" selected disabled hidden>Ordenar por</option><option value="dex">Pokédex</option><option value="dr">Pokédex invertida</option><option value="pd">Más cara → más barata</option><option value="pa">Más barata → más cara</option><option value="da">Más antigua → más nueva</option><option value="dd">Más nueva → más antigua</option><option value="ph">Primero con foto</option></select><button type="button" class="tbtn" id="sbtn" aria-haspopup="listbox" aria-expanded="false">Ordenar por ▾</button><div class="tlist" id="slist" role="listbox" hidden></div><button type="button" class="xclr" id="xsort" hidden>✕ Quitar</button></span>
+<span class="selw dexonly" data-w="lang"><select id="flang" hidden aria-label="Idioma"><option value="">Idioma</option><option value="es">Español</option><option value="en">Inglés</option><option value="ja">Japonés</option><option value="ko">Coreano</option></select><button type="button" class="tbtn" id="flangb" aria-haspopup="listbox" aria-expanded="false">Idioma ▾</button><div class="tlist" id="flangl" role="listbox" hidden></div><button type="button" class="xclr" id="xflang" hidden>✕ Quitar</button></span>
+<span class="selw dexonly" data-w="cond"><select id="fcond" hidden aria-label="Condición"><option value="">Condición</option><option value="NM">Near Mint (NM)</option><option value="EX">Excellent (EX)</option><option value="GD">Good (GD)</option></select><button type="button" class="tbtn" id="fcondb" aria-haspopup="listbox" aria-expanded="false">Condición ▾</button><div class="tlist" id="fcondl" role="listbox" hidden></div><button type="button" class="xclr" id="xfcond" hidden>✕ Quitar</button></span>
+<span class="selw dexonly" data-w="set"><button type="button" class="tbtn" id="fsetb" aria-haspopup="listbox">Set ▾</button><div class="tlist" id="fsetl" hidden></div><button type="button" class="xclr" id="xfset" hidden>✕ Quitar</button></span><i class="brk b1"></i><i class="brk b2"></i>
 <div class="seg" id="seg"><button data-s="all" aria-pressed="false">Todas</button><button data-s="own" aria-pressed="false">Tengo</button><button data-s="miss" aria-pressed="false">Me faltan</button></div>
 </div>
 <div class="grid" id="grid"></div>
@@ -646,7 +654,7 @@ function mkDD(sel,tb,tl,col,ico){
  const tsync=()=>{const o=sel.selectedOptions[0],c=col(o.value);tb.innerHTML=ico&&o.value?ico(o.value)+" ":"";tb.append(o.textContent+" ▾");tb.style.cssText=c?`background:${c};color:${ink(c)};border-color:transparent`:""};
  const close=()=>{tl.hidden=true;tb.setAttribute("aria-expanded","false")};
  tb.onclick=()=>{if(!tl.hidden)return close();tl.querySelectorAll(".topt").forEach(x=>x.classList.toggle("sel",x.dataset.v===sel.value));tl.hidden=false;tb.setAttribute("aria-expanded","true");const cw=document.documentElement.clientWidth;
-  if(cw<700){tl.style.position="fixed";tl.style.minWidth="0";const q=tb.getBoundingClientRect();tl.style.top=(q.bottom+4)+"px";tl.style.maxHeight=Math.max(120,innerHeight-q.bottom-16)+"px";tl.style.left="8px";const w=tl.getBoundingClientRect().width;tl.style.left=Math.max(8,Math.min(q.left,cw-w-8))+"px"}
+  if(cw<700){tl.style.position="fixed";tl.style.minWidth="0";const q=tb.getBoundingClientRect();{const H=Math.min(340,innerHeight-16);let tp=q.bottom+4;if(tp+H>innerHeight-8)tp=Math.max(8,innerHeight-8-H);tl.style.top=tp+"px";tl.style.maxHeight=H+"px"}tl.style.left="8px";const w=tl.getBoundingClientRect().width;tl.style.left=Math.max(8,Math.min(q.left,cw-w-8))+"px"}
   else{tl.style.position="";tl.style.top="";tl.style.maxHeight="";tl.style.minWidth="";tl.style.left="0px";const r=tl.getBoundingClientRect();if(r.right>cw-8)tl.style.left=-(r.right-cw+8)+"px"}};
  addEventListener("scroll",()=>{if(!tl.hidden&&document.documentElement.clientWidth<700)close()},{passive:true});
  tl.onclick=e=>{const o=e.target.closest(".topt");if(!o)return;sel.value=o.dataset.v;sel.dispatchEvent(new Event("change"));close()};
@@ -721,13 +729,14 @@ const SETS={"en":[["Mega Evolution Series (2025 - 2026)",["ME Promos (Mega Evolu
 const inSets=(L,v)=>!!v&&L.some(x=>x[1].includes(v));
 const setHTML=c=>{const cur=c.set||"",sl=c.sl||(inSets(SETS.en,cur)?"en":inSets(SETS.jp,cur)?"jp":"");
  return `<div class="setb"><span>Set</span><div class="row2"><div class="lgsel"><button type="button" class="tbtn" id="setb-en">${sl==="en"&&cur?esc(cur):"Sets en inglés"} ▾</button><div class="tlist setl" id="setl-en" hidden></div></div><div class="lgsel"><button type="button" class="tbtn" id="setb-jp">${sl==="jp"&&cur?esc(cur):"Sets en japonés"} ▾</button><div class="tlist setl" id="setl-jp" hidden></div></div></div>${cur&&!sl?`<p class="tcgcur">Valor anterior: ${esc(cur)}. Elige un set de las listas para cambiarlo.</p>`:""}<input type="hidden" id="f-set" value="${esc(cur)}"><input type="hidden" id="f-sl" value="${sl}"></div>`};
+function placeMob(b,l,h){const q=b.getBoundingClientRect(),H=Math.min(h,innerHeight-16);let tp=q.bottom+4;if(tp+H>innerHeight-8)tp=Math.max(8,innerHeight-8-H);l.style.position="fixed";l.style.top=tp+"px";l.style.left="8px";l.style.width=(document.documentElement.clientWidth-16)+"px";l.style.maxWidth="none";l.style.minWidth="0";l.style.maxHeight=H+"px"}
 function wireSet(){const lab={en:"Sets en inglés",jp:"Sets en japonés"};
  for(const k of ["en","jp"]){const b=$("setb-"+k),l=$("setl-"+k);
   b.onclick=()=>{if(!l.hidden){l.hidden=true;return}
    document.querySelectorAll(".setl").forEach(x=>x.hidden=true);
    l.innerHTML='<input type="search" class="sfil" placeholder="Buscar set…" autocomplete="off"><div class="sopt sclr" data-v="">✕ Sin set</div>'+SETS[k].map(([ser,list])=>`<div class="sgrp">${esc(ser)}</div>`+list.map(x=>`<div class="sopt" data-v="${esc(x)}">${esc(x)}</div>`).join("")).join("");
    l.hidden=false;const cw=document.documentElement.clientWidth;
-   if(cw<700){const q=b.getBoundingClientRect();l.style.position="fixed";l.style.top=(q.bottom+4)+"px";l.style.left="8px";l.style.width=(cw-16)+"px";l.style.maxHeight=Math.max(140,innerHeight-q.bottom-16)+"px"}
+   if(cw<700){placeMob(b,l,420)}
    else{l.style.position="";l.style.top="";l.style.width="";l.style.maxHeight="";l.style.left="0px";const r=l.getBoundingClientRect();if(r.right>cw-8)l.style.left=-(r.right-cw+8)+"px"}
    l.querySelector(".sfil").oninput=e=>{const q=e.target.value.trim().toLowerCase();l.querySelectorAll(".sopt:not(.sclr)").forEach(o=>o.hidden=!!q&&!o.dataset.v.toLowerCase().includes(q));l.querySelectorAll(".sgrp").forEach(g=>{let n=g.nextElementSibling,any=false;while(n&&n.classList.contains("sopt")){if(!n.hidden)any=true;n=n.nextElementSibling}g.hidden=!any})}};
   l.onclick=e=>{const o=e.target.closest(".sopt");if(!o)return;const v=o.dataset.v;$("f-set").value=v;$("f-sl").value=v?k:"";
@@ -841,9 +850,10 @@ let SHM=false,SHC=null;
 let SHF=null;
 const isMob=()=>/Android|iPhone|iPad|iPod/i.test(navigator.userAgent)||(navigator.maxTouchPoints>1&&/Macintosh/.test(navigator.userAgent));
 function shMsg(t){const m=$("shmsg");m.style.display=t?"block":"none";m.textContent=t||""}
-function shButtons(){const mob=isMob()&&!!navigator.share;$("shshare").hidden=!mob;$("shgo").textContent=SHC?(mob?"Guardar carta":"Guardar foto"):"Guardar imagen"}
+function shButtons(){const mob=isMob()&&!!navigator.share;$("shshare").hidden=!mob;$("shgo").textContent="Guardar imagen"}
+const shName=()=>{const cl=t=>String(t).replace(/[\\/:*?"<>|]+/g," ").replace(/\s+/g," ").trim();if(!SHC)return "Mi coleccion Pokemon "+today()+".png";const c=ENT[SHC];return cl("Carta "+c.name+(c.set?" - "+c.set:"")+(c.num?" "+c.num:""))+".png"};
 async function shRender(){shMsg("");SHF=null;shButtons();$("shshare").disabled=$("shgo").disabled=true;SHC?await drawCard($("shcv"),ENT[SHC],SHM):await drawShare($("shcv"),SHM);
- await new Promise(r=>$("shcv").toBlob(b=>{if(b)SHF=new File([b],SHC?"carta-pokemon.png":"mi-coleccion-pokemon.png",{type:"image/png"});r()},"image/png"));$("shshare").disabled=$("shgo").disabled=false}
+ await new Promise(r=>$("shcv").toBlob(b=>{if(b)SHF=new File([b],shName(),{type:"image/png"});r()},"image/png"));$("shshare").disabled=$("shgo").disabled=false}
 $("shbtn").onclick=async()=>{SHC=null;$("shttl").textContent="Compartir mi colección";SHM=false;$("shmoney").checked=false;$("shdlg").showModal();await shRender()};
 $("shmoney").onchange=e=>{SHM=e.target.checked;shRender()};$("shclose").onclick=()=>$("shdlg").close();
 $("shshare").onclick=async()=>{if(!SHF)return;try{await navigator.share({files:[SHF],title:SHC?"Mi carta Pokémon":"Mi colección Pokémon"})}catch(e){if(!e||e.name!=="AbortError")shMsg("Tu móvil no permite compartir la imagen directamente. Pulsa «Guardar» y envíala desde la galería.")}};
@@ -860,7 +870,7 @@ $("xflang").onclick=()=>{$("flang").value="";$("flang").dispatchEvent(new Event(
  b.onclick=()=>{if(!l.hidden){l.hidden=true;return}
   l.innerHTML='<input type="search" class="sfil" placeholder="Buscar set…" autocomplete="off">'+[["en","Sets en inglés"],["jp","Sets en japonés"]].map(([k,t])=>`<div class="slang">${t}</div>`+SETS[k].map(([ser,list])=>`<div class="sgrp">${esc(ser)}</div>`+list.map(x=>`<div class="sopt" data-l="${k}" data-v="${esc(x)}">${esc(x)}</div>`).join("")).join("")).join("");
   l.hidden=false;const cw=document.documentElement.clientWidth;
-  if(cw<700){const q=b.getBoundingClientRect();l.style.position="fixed";l.style.top=(q.bottom+4)+"px";l.style.left="8px";l.style.width=(cw-16)+"px";l.style.maxWidth="none";l.style.maxHeight=Math.max(140,innerHeight-q.bottom-16)+"px"}
+  if(cw<700){placeMob(b,l,420)}
   else{l.style.position="";l.style.top="";l.style.width="";l.style.maxWidth="";l.style.maxHeight="";l.style.left="0px";const r=l.getBoundingClientRect();if(r.right>cw-8)l.style.left=-(r.right-cw+8)+"px"}
   l.querySelector(".sfil").oninput=e=>{const q=e.target.value.trim().toLowerCase(),els=[...l.children].filter(x=>!x.classList.contains("sfil"));els.forEach(o=>{if(o.classList.contains("sopt"))o.hidden=!!q&&!o.dataset.v.toLowerCase().includes(q)});
    let so=false,sl=false;for(let i=els.length-1;i>=0;i--){const o=els[i];if(o.classList.contains("sopt")){if(!o.hidden){so=true;sl=true}}else if(o.classList.contains("sgrp")){o.hidden=!so;so=false}else{o.hidden=!sl;sl=false}}}};
