@@ -776,7 +776,11 @@ $("type").onchange=e=>{S.type=e.target.value;syncX();render()};
 $("xtype").onclick=()=>{$("type").value="all";$("type").dispatchEvent(new Event("change"))};
 $("seg").onclick=e=>{const b=e.target.closest("button");if(!b)return;const k=b.dataset.s;if(S.sel.has(k))S.sel.delete(k);else{S.sel.clear();S.sel.add(k)}document.querySelectorAll("#seg button").forEach(x=>x.setAttribute("aria-pressed",S.sel.has(x.dataset.s)));render()};
 $("grid").onclick=e=>{const b=e.target.closest(".slot");if(b)open_(b.dataset.k)};
-$("nav").onclick=e=>{const b=e.target.closest("button");if(!b)return;S.view=b.dataset.v;try{sessionStorage.setItem("pc-view",S.view)}catch(x){}render();requestAnimationFrame(()=>{$("nav").scrollIntoView({behavior:"smooth",block:"start"})})};
+function resetAll(){S.q="";$("q").value="";S.gen="all";S.sel.clear();S.fold={};document.querySelectorAll("#seg button").forEach(x=>x.setAttribute("aria-pressed","false"));
+ [["type","all"],["sort",""],["flang",""],["fcond",""]].forEach(([id,v])=>{const e=$(id);if(e&&e.value!==v){e.value=v;e.dispatchEvent(new Event("change"))}});
+ if(!$("xfset").hidden)$("xfset").click();S.type="all";S.sort="dex";S.fl.lang="";S.fl.cond="";S.fl.set=null;syncF();syncX();
+ document.querySelectorAll(".tlist").forEach(l=>{if(!l.closest("dialog"))l.hidden=true});document.querySelectorAll(".tbtn[aria-expanded]").forEach(x=>x.setAttribute("aria-expanded","false"));gens()}
+$("nav").onclick=e=>{const b=e.target.closest("button");if(!b)return;if(b.dataset.v!==S.view)resetAll();S.view=b.dataset.v;try{sessionStorage.setItem("pc-view",S.view)}catch(x){}render();requestAnimationFrame(()=>{$("nav").scrollIntoView({behavior:"smooth",block:"start"})})};
 $("grid").addEventListener("toggle",e=>{if(e.target.dataset&&e.target.dataset.r)S.fold[e.target.dataset.r]=!e.target.open},true);
 const ALB={fmt:"33",mode:"dex",p:0};try{Object.assign(ALB,JSON.parse(localStorage.getItem("pokecards-album-v1")||"{}"),{p:0})}catch(e){}
 function albSections(){const have=Object.keys(THUMB).map(k=>ENT[k]).filter(Boolean),set=new Set(have.map(c=>c.key)),dn=c=>+c.dex.slice(1),srt=a=>a.sort((x,y)=>dn(x)-dn(y)||x.key.localeCompare(y.key)),
