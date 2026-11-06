@@ -424,6 +424,7 @@ button.kpi{font:inherit;text-align:left;border:0;cursor:pointer;width:100%}butto
 html:has(dialog[open]),body:has(dialog[open]),html:has(.alb:not([hidden])),body:has(.alb:not([hidden])){overflow:hidden}
 dialog,.alb{overscroll-behavior:contain}
 #nav{scroll-margin-top:8px}
+@media(max-width:640px){.nav{display:grid;grid-template-columns:1fr 1fr;gap:8px}.nav button{width:100%;min-width:0;margin:0;white-space:normal;line-height:1.15;display:flex;align-items:center;justify-content:center;text-align:center}.nav button[data-v=reg],.nav button[data-v=leg],.nav button[data-v=par]{padding:9px 8px 9px 42px;font-size:14px;justify-content:flex-start;text-align:left}.nav button[data-v=reg]::before,.nav button[data-v=leg]::before,.nav button[data-v=par]::before{left:8px}}
 </style>
 </head>
 <body>
