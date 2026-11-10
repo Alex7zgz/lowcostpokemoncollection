@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
+<script>try{const t=localStorage.getItem("pokecards-theme-v1");if(t==="light"||t==="dark")document.documentElement.setAttribute("data-theme",t)}catch(e){}</script>
 <script>try{if(sessionStorage.getItem("pc-splash")||location.hash)document.documentElement.classList.add("nosp")}catch(e){}</script>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
@@ -527,7 +528,7 @@ img,.vfc,.slot,.holo{-webkit-touch-callout:none;-webkit-user-select:none;user-se
 }
 @media(max-width:759px) and (max-height:700px){#dlg:not(.wide):has(#ed[hidden])>.pimg img.pk{max-height:78px}#dlg:not(.wide):has(#ed[hidden])>.dl{font-size:13px;gap:2px 10px}}
 #vdlg .row{padding-top:18px}
-#vdlg{max-height:calc(100dvh - 16px);max-width:min(760px,94vw)}#vdlg .vgrid{margin:0 auto;width:min(100%,calc(3*(100dvh - 240px)/2.8 + 20px))}#vdlg #vbody{padding:14px 16px 10px}#vdlg .vorn{margin:4px 0 12px}#vdlg .vhint{margin:10px 0 0}#vdlg .row{padding-top:14px}
+#vdlg{max-height:calc(100dvh - 16px);max-width:min(760px,94vw)}#vdlg .vgrid{margin:0 auto;width:min(100%,calc(3*(100dvh - 268px)/2.8 + 20px))}#vdlg #vbody{padding:14px 16px 10px}#vdlg .vorn{margin:4px 0 12px}#vdlg .vhint{margin:10px 0 0}#vdlg .row{padding-top:14px}
 .hent{display:flex;gap:12px;padding:12px 0;border-top:1px solid var(--line)}.hent:first-child{border-top:0}.hph{flex:0 0 78px;aspect-ratio:5/7;border-radius:8px;background:var(--slot);overflow:hidden}.hph img{width:100%;height:100%;object-fit:cover;display:block}
 .hin{display:flex;flex-direction:column;gap:3px;font-size:13.5px;min-width:0}.hin b{font-size:15px}.hin span{color:var(--mute)}.hdel{align-self:flex-start;margin-top:6px;border:1px solid var(--line);background:transparent;color:var(--ink);border-radius:8px;padding:5px 10px;font:inherit;font-size:12.5px;cursor:pointer}
 details.pen summary{display:flex;justify-content:space-between;align-items:center;gap:10px;cursor:pointer;list-style:none}details.pen summary::-webkit-details-marker{display:none}details.pen summary b{font-size:13px;white-space:nowrap}
@@ -578,12 +579,71 @@ body{background:radial-gradient(1100px 520px at 50% -160px,color-mix(in srgb,var
 #bnav .bsh{background:linear-gradient(135deg,#ff7eb3,#ff5e62);color:#fff}#bnav .bsh i{font-style:normal;font-size:19px;line-height:21px}
 .acts #albbtn,.acts #vtbtn,.acts #stbtn,.acts #prbtn,.acts #shbtn{display:none}
 main{padding-bottom:110px}
-.ytp{bottom:calc(env(safe-area-inset-bottom,0px) + 84px)}.ugl{bottom:calc(env(safe-area-inset-bottom,0px) + 90px)}
+.ugl{bottom:calc(env(safe-area-inset-bottom,0px) + 90px)}
 }
 @media(prefers-reduced-motion:reduce){.vc i,.grid.tin>.slot{animation:none!important}}
 .vc span{white-space:pre-line;text-align:center;line-height:13px;min-height:26px}
 #sbox{z-index:15}
 @media(max-width:700px){#bnav{transition:opacity var(--t),transform var(--t) var(--ease)}body:has(.tlist:not([hidden])) #bnav,body:has(input:focus,textarea:focus,select:focus) #bnav{opacity:0;pointer-events:none;transform:translateY(24px)}}
+
+/* ===== MEJORAS ESTÉTICAS v2 ===== */
+.gt{position:relative}.gt .bar{display:none}.gt .gring{position:absolute;right:9px;top:9px;color:inherit}
+.rg{display:grid;grid-template-columns:repeat(auto-fill,minmax(96px,1fr));gap:14px 10px}.rgi{display:flex;flex-direction:column;align-items:center;text-align:center;gap:1px}.rgi b{font-size:13px;margin-top:6px}.rgi small{color:var(--mute);font-size:11.5px}.rgv{display:block;width:76px;height:76px;color:var(--ink)}.rgv .gring{display:block}
+img{transition:opacity .4s ease}img.ldg{opacity:0}
+.pbag{display:flex;align-items:center;justify-content:center;color:var(--mute)}.pbag svg{width:26px;height:26px;fill:none;stroke:currentColor;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}
+/* álbum tipo archivador */
+.alb{background:radial-gradient(ellipse at 50% 20%,#4a3426 0,#21160f 62%,#150d09 100%)}
+.book{position:relative;padding:22px;background:linear-gradient(145deg,#7d1f2e,#44101a 70%),repeating-linear-gradient(45deg,rgba(255,255,255,.035) 0 2px,transparent 2px 5px);background-blend-mode:overlay;box-shadow:0 30px 60px rgba(0,0,0,.65),inset 0 0 0 2px rgba(255,255,255,.08),inset 0 0 50px rgba(0,0,0,.4)}
+.book::before{content:"";position:absolute;inset:8px;border:1.5px dashed rgba(255,226,150,.32);border-radius:12px;pointer-events:none}
+.spread::after{content:"";position:absolute;left:50%;top:0;bottom:0;width:26px;margin-left:-13px;pointer-events:none;z-index:4;background:radial-gradient(circle at 50% 18%,#d9d9de 0 5px,#6c6c74 6px 8px,transparent 9px),radial-gradient(circle at 50% 50%,#d9d9de 0 5px,#6c6c74 6px 8px,transparent 9px),radial-gradient(circle at 50% 82%,#d9d9de 0 5px,#6c6c74 6px 8px,transparent 9px),linear-gradient(90deg,transparent,rgba(0,0,0,.22) 50%,transparent)}
+.apage{background:linear-gradient(180deg,#f6eedb,#efe4c9)}
+.apk{border-radius:8px;border:1px solid rgba(0,0,0,.28);border-top:3px solid rgba(255,255,255,.9);box-shadow:inset 0 -6px 8px -6px rgba(0,0,0,.35),inset 0 0 6px rgba(0,0,0,.18),0 2px 3px rgba(0,0,0,.25)}
+.apk .gl{background:linear-gradient(115deg,rgba(255,255,255,.5) 0,rgba(255,255,255,0) 34%,rgba(255,255,255,0) 64%,rgba(255,255,255,.2) 100%)}
+.apk::after{content:"";position:absolute;left:0;right:0;top:0;height:7px;background:linear-gradient(180deg,rgba(255,255,255,.55),rgba(255,255,255,0));pointer-events:none}
+.spread.tn{animation:tn2 .55s cubic-bezier(.2,.8,.2,1)}.spread.tp{animation:tp2 .55s cubic-bezier(.2,.8,.2,1)}
+@keyframes tn2{0%{transform:perspective(1600px) rotateY(-16deg) translateX(22px);opacity:.15;filter:brightness(.75)}100%{transform:none;opacity:1;filter:none}}
+@keyframes tp2{0%{transform:perspective(1600px) rotateY(16deg) translateX(-22px);opacity:.15;filter:brightness(.75)}100%{transform:none;opacity:1;filter:none}}
+/* interruptor de tema y mini título */
+#thbtn{position:fixed;top:calc(env(safe-area-inset-top,0px) + 10px);right:58px;z-index:30;width:38px;height:38px;border-radius:50%;border:1px solid var(--line);background:var(--panel);color:var(--ink);cursor:pointer;display:flex;align-items:center;justify-content:center;box-shadow:var(--sh1);padding:0}
+#thbtn svg{width:19px;height:19px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}#thbtn .mo{display:none}
+:root[data-theme="dark"] #thbtn .su{display:none}:root[data-theme="dark"] #thbtn .mo{display:block}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) #thbtn .su{display:none}:root:not([data-theme="light"]) #thbtn .mo{display:block}}
+#mini{position:fixed;left:0;right:0;top:0;z-index:18;height:calc(env(safe-area-inset-top,0px) + 48px);padding:env(safe-area-inset-top,0px) 108px 0 16px;display:flex;align-items:center;gap:10px;background:color-mix(in srgb,var(--panel) 86%,transparent);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-bottom:1px solid var(--line);transform:translateY(-110%);transition:transform .3s cubic-bezier(.2,.8,.2,1);pointer-events:none}
+#mini.on{transform:none;pointer-events:auto}#mini b{font-size:14px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}#mini span{color:var(--mute);font-size:12.5px;white-space:nowrap;margin-left:auto}
+@media(prefers-reduced-motion:reduce){#mini{transition:none}}
+.gt .gring{right:8px;top:7px;width:26px;height:26px}
+#nav{scroll-margin-top:58px}
+.spread::after{left:0;right:0;top:50%;bottom:auto;width:auto;height:26px;margin:-13px 0 0;background:radial-gradient(circle at 18% 50%,#d9d9de 0 5px,#6c6c74 6px 8px,transparent 9px),radial-gradient(circle at 50% 50%,#d9d9de 0 5px,#6c6c74 6px 8px,transparent 9px),radial-gradient(circle at 82% 50%,#d9d9de 0 5px,#6c6c74 6px 8px,transparent 9px),linear-gradient(180deg,transparent,rgba(0,0,0,.25) 50%,transparent)}
+.spread.stack.tn{animation:stn2 .5s cubic-bezier(.2,.8,.2,1)}.spread.stack.tp{animation:stp2 .5s cubic-bezier(.2,.8,.2,1)}
+@keyframes stn2{0%{transform:perspective(1400px) translateX(44px) rotateY(-14deg);opacity:.2;filter:brightness(.78)}100%{transform:none;opacity:1;filter:none}}
+@keyframes stp2{0%{transform:perspective(1400px) translateX(-44px) rotateY(14deg);opacity:.2;filter:brightness(.78)}100%{transform:none;opacity:1;filter:none}}
+.apk.empty{grid-column:auto;padding:0;aspect-ratio:63/88;min-height:0;border:1px solid rgba(0,0,0,.18);border-top:3px solid rgba(255,255,255,.7);border-radius:8px;background:repeating-linear-gradient(45deg,rgba(0,0,0,.04) 0 6px,rgba(0,0,0,.08) 6px 12px);box-shadow:inset 0 0 6px rgba(0,0,0,.12)}.apk.empty::before,.apk.empty::after{content:none;display:none}
+.tools #q,.tbtn{background:var(--panel);color:var(--ink)}
+/* ajustes tras pruebas */
+#thbtn{top:calc(env(safe-area-inset-top,0px) + 56px);right:12px}
+#mini{padding-right:64px}
+#gens,#gstats,#sbox{scroll-margin-top:58px}
+#mini .mgo{display:inline-flex;align-items:center;gap:5px;margin-left:auto;border:1px solid var(--line);background:var(--panel);color:var(--ink);border-radius:99px;padding:5px 12px 5px 8px;font:600 12.5px "DM Sans",system-ui,sans-serif;cursor:pointer}
+#mini .mgo svg{width:15px;height:15px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+#mini .mgo+span{margin-left:0}
+@media(max-width:520px){#mini span.mp{display:none}}
+/* álbum en negro */
+#alb{background:radial-gradient(ellipse at 50% 20%,#1d1d22 0,#0b0b0d 65%,#050506 100%)}
+.book{background:linear-gradient(145deg,#2c2c33,#141417 70%),repeating-linear-gradient(45deg,rgba(255,255,255,.04) 0 2px,transparent 2px 5px);background-blend-mode:overlay;box-shadow:0 30px 60px rgba(0,0,0,.85),inset 0 0 0 2px rgba(255,255,255,.07),inset 0 0 50px rgba(0,0,0,.6)}
+.book::before{border-color:rgba(255,226,150,.26)}
+.apage{background:linear-gradient(180deg,#131317,#0b0b0e);color:#e9e7f2}
+.apage.l{box-shadow:inset -22px 0 24px -18px rgba(0,0,0,.6)}.apage.r{box-shadow:inset 22px 0 24px -18px rgba(0,0,0,.6)}.apage.s{box-shadow:inset 18px 0 20px -14px rgba(0,0,0,.6)}
+.apk{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.16);border-top:3px solid rgba(255,255,255,.4);box-shadow:inset 0 0 6px rgba(0,0,0,.5),0 2px 4px rgba(0,0,0,.6)}
+.apk::after{background:linear-gradient(180deg,rgba(255,255,255,.3),rgba(255,255,255,0))}
+.apk.empty{background:repeating-linear-gradient(45deg,rgba(255,255,255,.03) 0 6px,rgba(255,255,255,.065) 6px 12px);border:1px solid rgba(255,255,255,.1);border-top:3px solid rgba(255,255,255,.2);box-shadow:inset 0 0 6px rgba(0,0,0,.5)}
+.anum{color:#8d8d9b;z-index:5}
+.spread::after{background:radial-gradient(circle at 14% 50%,#d9d9de 0 5px,#6c6c74 6px 8px,transparent 9px),radial-gradient(circle at 32% 50%,#d9d9de 0 5px,#6c6c74 6px 8px,transparent 9px),radial-gradient(circle at 68% 50%,#d9d9de 0 5px,#6c6c74 6px 8px,transparent 9px),radial-gradient(circle at 86% 50%,#d9d9de 0 5px,#6c6c74 6px 8px,transparent 9px),linear-gradient(180deg,transparent,rgba(255,255,255,.07) 50%,transparent)}
+#grid:not(:empty){min-height:calc(100dvh - 240px)}
+body.albopen #thbtn{display:none}
+.stbody .vc b,.stbody .rgv,.stbody .rgi b{color:#1a1633}
+.stbody .vb{background-image:repeating-linear-gradient(to top,transparent 0,transparent calc(25% - 1px),rgba(26,22,51,.1) calc(25% - 1px),rgba(26,22,51,.1) 25%)}
+.stbody .rgi small{color:#6b6785}
+#vdlg #vbody{padding-top:24px}
 </style>
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@700&display=swap">
 </head>
@@ -678,7 +738,7 @@ function gens(){
  $("gens").innerHTML=REG.map((n,i)=>{const g=D.gens.find(x=>x.id==="GEN "+(i+1));
   if(!g)return `<div class="gt off"><b>Gen ${i+1}</b><small>${n}${i<9?" · pendiente":""}</small></div>`;
   const o=all.filter(c=>c.gen===g.id&&c.owned).length;
-  return `<button class="gt" style="background:${GC[i]};color:${ink(GC[i])}" data-g="${g.id}" aria-pressed="${S.gen===g.id}"><b>Gen ${i+1}</b><small>${n} · ${o}/${g.cards.length}</small><small>${pc(o,g.cards.length)}</small><div class="bar"><i style="width:${o/g.cards.length*100}%"></i></div></button>`}).join("");
+  return `<button class="gt" style="background:${GC[i]};color:${ink(GC[i])}" data-g="${g.id}" aria-pressed="${S.gen===g.id}"><b>Gen ${i+1}</b><small>${n} · ${o}/${g.cards.length}</small><small>${pc(o,g.cards.length)}</small><div class="bar"><i style="width:${o/g.cards.length*100}%"></i></div>${ring(o/g.cards.length,26,3.5,"",1)}</button>`}).join("");
 }
 function stats(){
  const own=all.filter(c=>c.owned),spent=own.reduce((s,c)=>s+(typeof c.price==="number"?c.price:0),0);
@@ -907,7 +967,7 @@ function vRows(){const mn=parseEur(VF.min),mx=parseEur(VF.max);
  return vBase().filter(c=>(!VF.reg||regOf(c)===VF.reg)&&(!VF.set||c.set===VF.set)&&(!VF.era||eraOf(c)===VF.era)&&(!VF.type||c.type===VF.type)&&(!VF.lang||(c.lang||"_")===VF.lang)&&(mn===null||valOf(c)>=mn)&&(mx===null||valOf(c)<=mx))
  .sort((a,b)=>(VF.ord==="a"?valOf(a)-valOf(b):valOf(b)-valOf(a))||String(a.name).localeCompare(b.name))}
 function vRes(){const l=vRows(),t=l.reduce((s,c)=>s+valOf(c),0),sin=OWN().length-vBase().length;
- return `<p class="vsum">${l.length} ${l.length===1?"carta":"cartas"} · suma ${eur2(t)}${sin?` · ${sin} sin valor no aparecen`:""}</p>`+(l.length?`<div class="tw"><table class="ltab vtab"><thead><tr><th>#</th><th>Carta</th><th>Región</th><th>Etapa</th><th>Set</th><th>Tipo</th><th>Idioma</th><th>Valor</th></tr></thead><tbody>${l.map((c,i)=>`<tr><td>${i+1}</td><td>${esc(c.card||c.name)} <small class="vsm">${esc(c.name)}</small></td><td>${esc(regOf(c))}</td><td>${esc(eraOf(c))||"—"}</td><td>${esc(c.set)||"—"}</td><td>${esc(c.type)||"—"}</td><td>${c.lang&&LN[c.lang]?flagSvg(c.lang)+" "+LN[c.lang]:"—"}</td><td><b>${eur2(valOf(c))}</b></td></tr>`).join("")}</tbody></table></div>`:`<p class="empty">No hay cartas para los filtros seleccionados.</p>`)}
+ return `<p class="vsum">${l.length} ${l.length===1?"carta":"cartas"} · suma ${eur2(t)}${sin?` · ${sin} sin valor no aparecen`:""}</p>`+(l.length?`<div class="tw"><table class="ltab vtab"><thead><tr><th>#</th><th>Carta</th><th>Región</th><th>Era</th><th>Set</th><th>Tipo</th><th>Idioma</th><th>Valor</th></tr></thead><tbody>${l.map((c,i)=>`<tr><td>${i+1}</td><td>${esc(c.card||c.name)} <small class="vsm">${esc(c.name)}</small></td><td>${esc(regOf(c))}</td><td>${esc(eraOf(c))||"—"}</td><td>${esc(c.set)||"—"}</td><td>${esc(c.type)||"—"}</td><td>${c.lang&&LN[c.lang]?flagSvg(c.lang)+" "+LN[c.lang]:"—"}</td><td><b>${eur2(valOf(c))}</b></td></tr>`).join("")}</tbody></table></div>`:`<p class="empty">No hay cartas para los filtros seleccionados.</p>`)}
 function vView(){const b=vBase();if(!b.length)return `<p class="empty">Todavía no hay cartas con «Valor carta». Puedes rellenarlo en Estadísticas → Actualizar valores.</p>`;
  const sel=(k,l,o,all0)=>`<label>${l}<select data-vf="${k}"><option value="">${all0}</option>${o.map(([v,n])=>`<option value="${esc(v)}"${VF[k]===v?" selected":""}>${esc(n)}</option>`).join("")}</select></label>`;
  const regs=[...D.gens.map((g,i)=>[g.title,"Gen "+(i+1)+" · "+g.title]),["Formas regionales","Formas regionales"]],
@@ -915,7 +975,7 @@ function vView(){const b=vBase();if(!b.length)return `<p class="empty">Todavía 
   eras=GENS,
   types=Object.keys(D.types),
   langs=[...Object.keys(LN),"_"];
- return `<div class="vf">${sel("reg","Región",regs,"Todas")}${sel("set","Set",sets.map(r=>[r,r]),"Todos")}${sel("era","Etapa",eras.map(r=>[r,r]),"Todas")}${sel("type","Tipo de Pokémon",types.map(r=>[r,r]),"Todos")}${sel("lang","Idioma",langs.map(q=>[q,q==="_"?"Sin indicar":LN[q]]),"Todos")}
+ return `<div class="vf">${sel("reg","Región",regs,"Todas")}${sel("set","Set",sets.map(r=>[r,r]),"Todos")}${sel("era","Era",eras.map(r=>[r,r]),"Todas")}${sel("type","Tipo de Pokémon",types.map(r=>[r,r]),"Todos")}${sel("lang","Idioma",langs.map(q=>[q,q==="_"?"Sin indicar":LN[q]]),"Todos")}
  <label>Ordenar<select data-vf="ord"><option value="d"${VF.ord==="d"?" selected":""}>Más cara → más barata</option><option value="a"${VF.ord==="a"?" selected":""}>Más barata → más cara</option></select></label>
  <label>Valor desde (€)<input data-vf="min" type="text" inputmode="decimal" autocomplete="off" placeholder="0" value="${esc(VF.min)}"></label>
  <label>Valor hasta (€)<input data-vf="max" type="text" inputmode="decimal" autocomplete="off" placeholder="sin límite" value="${esc(VF.max)}"></label></div>
@@ -957,7 +1017,7 @@ function resetAll(){S.q="";$("q").value="";S.gen="all";S.sel.clear();S.fold={};d
  [["type","all"],["sort",""],["flang",""],["fcond",""],["fstate",""],["facq",""]].forEach(([id,v])=>{const e=$(id);if(e&&e.value!==v){e.value=v;e.dispatchEvent(new Event("change"))}});
  if(!$("xfset").hidden)$("xfset").click();S.type="all";S.sort="dex";S.fl.lang="";S.fl.cond="";S.fl.set=null;S.fl.st="";syncF();syncX();
  document.querySelectorAll(".tlist").forEach(l=>{if(!l.closest("dialog"))l.hidden=true});document.querySelectorAll(".tbtn[aria-expanded]").forEach(x=>x.setAttribute("aria-expanded","false"));gens()}
-$("nav").onclick=e=>{const b=e.target.closest("button");if(!b)return;if(b.dataset.v!==S.view)resetAll();S.view=b.dataset.v;try{sessionStorage.setItem("pc-view",S.view)}catch(x){}render();tabIn();requestAnimationFrame(()=>{$("nav").scrollIntoView({behavior:"smooth",block:"start"})})};
+$("nav").onclick=e=>{const b=e.target.closest("button");if(!b)return;if(b.dataset.v!==S.view)resetAll();S.view=b.dataset.v;try{sessionStorage.setItem("pc-view",S.view)}catch(x){}render();(S.view==="dex"?$("gens"):$("nav")).scrollIntoView({behavior:"smooth",block:"start"});tabIn()};
 $("grid").addEventListener("toggle",e=>{if(e.target.dataset&&e.target.dataset.r)S.fold[e.target.dataset.r]=!e.target.open},true);
 const ALB={fmt:"33",mode:"dex",p:0};try{Object.assign(ALB,JSON.parse(localStorage.getItem("pokecards-album-v1")||"{}"),{p:0})}catch(e){}
 function albSections(){const have=Object.keys(THUMB).map(k=>ENT[k]).filter(Boolean),set=new Set(have.map(c=>c.key)),dn=c=>+c.dex.slice(1),srt=a=>a.sort((x,y)=>dn(x)-dn(y)||x.key.localeCompare(y.key)),
@@ -1040,6 +1100,8 @@ const hb=(items,fmt)=>{const m=Math.max(1,...items.map(i=>i.v));return items.map
 const donut=items=>{const t=items.reduce((s,i)=>s+i.v,0);if(!t)return '<p class="mut">Sin datos todavía.</p>';let a=0;const g=items.filter(i=>i.v).map(i=>{const s=a/t*360;a+=i.v;return `${i.c} ${s}deg ${a/t*360}deg`}).join(",");return `<div class="dn"><div class="dc" style="background:conic-gradient(${g})"><span>${t}</span></div><ul>${items.filter(i=>i.v).map(i=>`<li><i style="background:${i.c}"></i>${esc(i.l)} <b>${i.v}</b></li>`).join("")}</ul></div>`};
 const vbars=(items,col)=>{const m=Math.max(1,...items.map(i=>i.v));return `<div class="vb">${items.map(i=>`<div class="vc" title="${esc(i.l)}: ${eur2(i.v)}"><b>${i.v?Math.round(i.v):""}</b><i style="height:${i.v/m*100}%${col?`;background:linear-gradient(${col[0]},${col[1]})`:""}"></i><span>${esc(i.l)}</span></div>`).join("")}</div>`};
 const sg=n=>(n>0?"+":"")+eur2(n),cls=n=>n>0?"up":n<0?"down":"";
+const ring=(f,sz,w,col,nolbl,txt)=>{const r=(sz-w)/2,L=2*Math.PI*r,fv=Math.max(0,Math.min(1,f||0));return `<svg class="gring" width="${sz}" height="${sz}" viewBox="0 0 ${sz} ${sz}" aria-hidden="true"><circle cx="${sz/2}" cy="${sz/2}" r="${r}" fill="none" stroke="currentColor" stroke-opacity=".22" stroke-width="${w}"/>${fv>0?`<circle cx="${sz/2}" cy="${sz/2}" r="${r}" fill="none" stroke="${col?"":"currentColor"}"${col?` style="stroke:color-mix(in srgb,${col} 62%,#1a1633)"`:""} stroke-width="${w}" stroke-linecap="round" stroke-dasharray="${(fv*L).toFixed(1)} ${L.toFixed(1)}" transform="rotate(-90 ${sz/2} ${sz/2})"/>`:""}${nolbl?"":`<text x="50%" y="50%" text-anchor="middle" dominant-baseline="central" font-size="${txt?10.5:Math.round(sz*.27)}" font-weight="700" fill="currentColor">${txt||Math.round(fv*100)}</text>`}</svg>`};
+const rings=l=>`<div class="rg">${l.map(i=>`<div class="rgi"><span class="rgv">${ring(i.t?i.v/i.t:0,76,8,i.c,0,(i.t?i.v/i.t*100:0).toLocaleString("es-ES",{minimumFractionDigits:2,maximumFractionDigits:2})+" %")}</span><b>${esc(i.l.split(" · ")[0])}</b><small>${esc(i.l.split(" · ")[1]||"")}</small><small>${i.v}/${i.t}</small></div>`).join("")}</div>`;
 function tabRes(){const x=ctx(),k=(l,v,s,a)=>{const T=a?'button type="button" data-valtot="1"':"div";return `<${T} class="kpi${a?" clk":""}"><b>${v}</b><span>${l}</span>${s?`<small>${s}</small>`:""}</${a?"button":"div"}>`};
  const types=Object.keys(D.types).map(t=>({l:t,v:x.own.filter(c=>c.type===t).length,c:D.types[t]})).sort((a,b)=>b.v-a.v);
  const gens=D.gens.map((g,i)=>{const a=all.filter(c=>c.gen===g.id);return {l:g.id.replace("GEN","Gen")+" · "+g.title,v:a.filter(c=>c.owned).length,t:a.length,c:GC[i]}});
@@ -1053,7 +1115,7 @@ function tabRes(){const x=ctx(),k=(l,v,s,a)=>{const T=a?'button type="button" da
  const mk2=f=>mons.map(m=>({l:m.slice(5)+"/"+m.slice(2,4),v:f(m)})),tt=a=>a.reduce((t,i)=>t+i.v,0),sC=mk2(m=>mc[m]||0),sP=mk2(m=>mp[m]||0),sT=mk2(m=>(mc[m]||0)+(mp[m]||0)),
  gch=(t,a,c)=>`<div class="stc"><h3>${t} <small class="mut">· total del periodo: ${eur2(tt(a))}</small></h3>${vbars(a,c)}</div>`;
  return `<div class="kpis">${k("Cartas",x.base.length+" / "+all.length,pc(x.base.length,all.length))}${k("Gasto total en cartas",eur2(x.spent),"solo cartas sueltas")}${k("Gasto total en productos",eur2(PS()),PRODS.length+" productos")}${k("Gasto total",eur2(x.spent+PS()),"cartas + productos")}${k("Valor total cartas",x.valued.length?eur2(x.valT):"—",x.valued.length+" con valor · pulsa para ver y filtrar",1)}${k("Ganancia / pérdida en cartas",x.both.length?`<em class="${cls(x.vb-x.inv)}">${sg(x.vb-x.inv)}</em>`:"—",x.both.length?"coste de las cartas sueltas frente a su valor actual ("+x.both.length+" cartas)":"Faltan precio o valor en tus cartas")}${k("Resultado con productos",x.valued.length||PS()?`<em class="${cls(x.valT-x.spent-PS())}">${sg(x.valT-x.spent-PS())}</em>`:"—","valor de tus cartas − gasto total (cartas + productos)")}</div>
- <div class="stg"><div class="stc"><h3>Cartas por tipo</h3>${hb(types)}</div><div class="stc"><h3>Cartas por generación</h3>${hb(gens,i=>`${i.v}/${i.t} · ${pc(i.v,i.t)}`)}</div>
+ <div class="stg"><div class="stc"><h3>Cartas por tipo</h3>${hb(types)}</div><div class="stc"><h3>Cartas por generación</h3>${rings(gens)}</div>
  <div class="stc"><h3>Idioma</h3>${donut(lg)}</div><div class="stc"><h3>Condición</h3>${donut(cd)}</div>
  <div class="stc"><h3>Sets más repetidos</h3>${sets.length?hb(sets):'<p class="mut">Aún no has elegido sets.</p>'}</div>
  <div class="stc wide"><h3>Gasto por mes</h3><div class="gmr"><label>Desde<input type="month" id="gm-from" value="${from}"></label><label>Hasta<input type="month" id="gm-to" value="${to}"></label><button type="button" id="gm-rst">Últimos 5 meses</button></div><p class="mut" style="margin:6px 0 0;font-size:12px">Por defecto se ven el mes actual y los 4 anteriores. Cambia las fechas para ver otros periodos.</p></div>${gch("Solo cartas (€)",sC,["#5b8def","#3a63c7"])}${gch("Solo productos (€)",sP,["#f5a623","#d9822b"])}${gch("Cartas + productos (€)",sT,["#34b36b","#1f8a4c"])}</div>`}
@@ -1064,18 +1126,22 @@ function tabGan0(){const x=ctx(),rows=x.both.map(c=>({c,v:valOf(c),d:valOf(c)-c.
  return `<div class="kpis"><div class="kpi"><b>${eur2(x.inv)}</b><span>Pagado</span></div><div class="kpi"><b>${eur2(x.vb)}</b><span>Vale ahora</span></div><div class="kpi"><b><em class="${cls(d)}">${sg(d)}</em></b><span>Diferencia</span><small>${x.inv?(d>=0?"+":"")+(d/x.inv*100).toFixed(1).replace(".",",")+" %":""}</small></div></div>
  <div class="stg"><div class="stc gup"><h3>Carta que más ha subido</h3>${b?`<div class="gbox">${gi(b.c)}<p><b>${esc(b.c.card||b.c.name)}</b> <span class="mut">(${esc(b.c.name)})</span><br><em class="${cls(b.d)}">${sg(b.d)}</em> · de ${eur2(b.c.price)} a ${eur2(b.v)}</p></div>`:`<p class="mut">Ninguna carta ha subido de valor todavía.</p>`}</div><div class="stc gdn"><h3>Carta que más ha bajado</h3>${w?`<div class="gbox">${gi(w.c)}<p><b>${esc(w.c.card||w.c.name)}</b> <span class="mut">(${esc(w.c.name)})</span><br><em class="${cls(w.d)}">${sg(w.d)}</em> · de ${eur2(w.c.price)} a ${eur2(w.v)}</p></div>`:`<p class="mut">Ninguna carta ha bajado de valor.</p>`}</div></div>
  <div class="stc"><h3>Detalle por carta</h3><div class="tw"><table class="ltab gtb" style="min-width:560px;table-layout:auto"><thead><tr><th>Carta</th><th>Pagaste</th><th>Vale</th><th>Diferencia</th><th>%</th></tr></thead><tbody>${rows.map(r=>`<tr><td>${esc(r.c.card||r.c.name)} <small class="mut">${esc(r.c.name)}</small></td><td>${eur2(r.c.price)}</td><td>${eur2(r.v)}</td><td class="${cls(r.d)}">${sg(r.d)}</td><td class="${cls(r.d)}">${r.c.price?(r.d>=0?"+":"")+(r.d/r.c.price*100).toFixed(1).replace(".",",")+" %":"—"}</td></tr>`).join("")}</tbody></table></div>${sin?`<p class="mut">${sin} cartas no entran porque les falta el precio o el valor.</p>`:""}</div>`}
+let EMR={from:"",to:""};
 function tabEvo(){snapTake();const x=ctx(),cur=today().slice(0,7),mk=(y,m)=>y+"-"+String(m).padStart(2,"0");
  const first=[...x.own.filter(c=>c.date).map(c=>c.date.slice(0,7)),...Object.keys(SNAPS)].sort()[0];
  if(!first)return '<div class="stc"><p class="mut">Todavía no hay datos. Cuando añadas cartas con fecha aparecerá aquí su evolución mes a mes.</p></div>';
  const lab=m=>{const [y,mo]=m.split("-");return new Date(+y,+mo-1,1).toLocaleDateString("es-ES",{month:"short"}).replace(".","")+"\n"+y.slice(2)},nom=m=>{const [y,mo]=m.split("-"),t=new Date(+y,+mo-1,1).toLocaleDateString("es-ES",{month:"long",year:"numeric"});return t[0].toUpperCase()+t.slice(1)};
- const ms=[];{let [y,mo]=first.split("-").map(Number);while(mk(y,mo)<=cur){ms.push(mk(y,mo));if(++mo>12){mo=1;y++}}}
+ const addM=(m,d)=>{let [y,mo]=m.split("-").map(Number);mo+=d;y+=Math.floor((mo-1)/12);mo=((mo-1)%12+12)%12+1;return y+"-"+String(mo).padStart(2,"0")};
+ let to=EMR.to||cur;if(to>cur)to=cur;let from=EMR.from||addM(to,-4);if(from>to)[from,to]=[to,from];
+ const st0=from<first?from:first,ms=[];{let [y,mo]=st0.split("-").map(Number);while(mk(y,mo)<=cur){ms.push(mk(y,mo));if(++mo>12){mo=1;y++}}}
  const rows=ms.map(m=>{const s=SNAPS[m];if(s)return{m,c:s.c,v:s.v,g:s.g,sn:1};const pr=x.own.filter(c=>c.date&&c.date<m+"-01");return{m,c:pr.length,v:null,g:pr.reduce((t,c)=>t+(typeof c.price==="number"?c.price:0),0),sn:0}});
- const now={m:"ahora",c:x.own.length,v:x.valued.length?x.valT:null,g:x.spent,sn:2},all2=[...rows,now],last12=rows.slice(-12);
- const ch=(t,k,col,f)=>`<div class="stc"><h3>${t} <small class="mut">· a principio de cada mes</small></h3>${vbars(last12.map(r=>({l:lab(r.m),v:r[k]||0})),col)}</div>`;
+ const now={m:"ahora",c:x.own.length,v:x.valued.length?x.valT:null,g:x.spent,sn:2},all2=[...rows,now],view=rows.filter(r=>r.m>=from&&r.m<=to);
+ const ch=(t,k,col,f)=>`<div class="stc"><h3>${t} <small class="mut">· a principio de cada mes</small></h3>${vbars(view.map(r=>({l:lab(r.m),v:r[k]||0})),col)}</div>`;
  const dC=(a,b)=>{const d=a-b;return d?` <em class="${cls(d)}">(${d>0?"+":""}${d})</em>`:""},dE=(a,b)=>{if(a===null||b===null||b===undefined)return"";const d=Math.round((a-b)*100)/100;return d?` <em class="${cls(d)}">(${sg(d)})</em>`:""};
  const sh=all2.filter(r=>r.v!==null),tr=sh.map((r,i)=>{const p=sh[i-1];return `<tr><td>${r.sn===2?"<b>Ahora</b>":nom(r.m)+(r.sn?"":' <small class="mut">(calculado)</small>')}</td><td>${r.c}${p?dC(r.c,p.c):""}</td><td>${r.v===null?"—":eur2(r.v)+(p?dE(r.v,p.v):"")}</td><td>${eur2(r.g)}${p?dE(r.g,p.g):""}</td></tr>`}).reverse().join("");
- const hasV=last12.some(r=>r.v!==null);
+ const hasV=view.some(r=>r.v!==null);
  return `<div class="stc"><p class="mut" style="margin:0">Cada mes se guarda automáticamente un pantallazo la primera vez que abres la web: número de cartas, valor total y gasto en cartas a principio de mes. Los meses sin pantallazo muestran las cartas y el gasto calculados con las fechas, sin valor.</p></div>`
+ +`<div class="stc wide"><h3>Periodo de las gráficas</h3><div class="gmr"><label>Desde<input type="month" id="ev-from" value="${from}"></label><label>Hasta<input type="month" id="ev-to" value="${to}"></label><button type="button" id="ev-rst">Últimos 5 meses</button></div><p class="mut" style="margin:6px 0 0;font-size:12px">Por defecto se ven el mes actual y los 4 anteriores. Cambia las fechas para ver otros periodos.</p></div>`
  +(hasV?ch("Valor total de la colección (€)","v",["#34b36b","#1f8a4c"]):`<div class="stc"><h3>Valor total de la colección</h3><p class="mut">Todavía no hay valores guardados en ningún pantallazo mensual. Se guardará el valor del primer día que abras la web cada mes.</p></div>`)
  +ch("Cartas conseguidas","c",["#5b8def","#3a63c7"])+ch("Gasto acumulado en cartas (€)","g",["#f5a623","#d9822b"])
  +`<div class="stc"><h3>Detalle por mes</h3><div class="tw"><table class="ltab gtb" style="min-width:520px;table-layout:auto"><thead><tr><th>Mes</th><th>Cartas</th><th>Valor total</th><th>Gasto acumulado</th></tr></thead><tbody>${tr||'<tr><td colspan="4" class="mut">Todavía no hay meses con valor.</td></tr>'}</tbody></table></div></div>`}
@@ -1113,8 +1179,8 @@ function stOpen(){if($("stv").hidden)lyPush("stv");$("stv").hidden=false;ovHash(
 function stClose(){$("stv").hidden=true;ovHash();document.body.style.overflow="";document.body.classList.remove("albopen");lyDone("stv")}
 $("stbtn").onclick=stOpen;$("stclose").onclick=stClose;$("stabs").onclick=e=>{const b=e.target.closest("button");if(b){STT=b.dataset.t;$("stbody").scrollTop=0;ovHash();renderSt()}};
 $("stbody").addEventListener("change",e=>{const i=e.target.closest(".upi");if(!i)return;const r=i.closest(".upr");if(setVal(r.dataset.k,i.value)){const c=ENT[r.dataset.k];r.querySelector(".upd").textContent=valOf(c)!==null?eur2(valOf(c))+" · "+fdt(c.vdt):"Sin valor";r.classList.remove("old")}});
-$("stbody").addEventListener("change",e=>{if(e.target.id==="gm-from"||e.target.id==="gm-to"){GMR={from:$("gm-from").value||"",to:$("gm-to").value||""};renderSt()}});
-$("stbody").addEventListener("click",e=>{const op=e.target.closest("[data-open]");if(op){open_(op.dataset.open);return}if(e.target.closest("[data-valtot]")){listDlg("val");return}if(e.target.id==="gm-rst"){GMR={from:"",to:""};renderSt()}});
+$("stbody").addEventListener("change",e=>{if(e.target.id==="gm-from"||e.target.id==="gm-to"){GMR={from:$("gm-from").value||"",to:$("gm-to").value||""};renderSt()}else if(e.target.id==="ev-from"||e.target.id==="ev-to"){EMR={from:$("ev-from").value||"",to:$("ev-to").value||""};renderSt()}});
+$("stbody").addEventListener("click",e=>{if(e.target.id==="ev-rst"){EMR={from:"",to:""};renderSt();return}const op=e.target.closest("[data-open]");if(op){open_(op.dataset.open);return}if(e.target.closest("[data-valtot]")){listDlg("val");return}if(e.target.id==="gm-rst"){GMR={from:"",to:""};renderSt()}});
 $("stbody").addEventListener("keydown",e=>{if(e.key==="Enter"&&e.target.classList.contains("upi")){e.preventDefault();const l=[...document.querySelectorAll(".upi")],n=l[l.indexOf(e.target)+1];e.target.blur();if(n){n.focus();n.scrollIntoView({block:"center"})}}});
 document.addEventListener("keydown",e=>{if(e.key==="Escape"&&!$("stv").hidden&&!document.querySelector("dialog[open]"))stClose()});
 // ----- Recomendación del día -----
@@ -1222,7 +1288,7 @@ const prodSet=p=>p.set?esc(p.set)+(p.gen?" ("+esc(p.gen)+")":""):"Sin set"+(p.ge
 function prFiltered(){const pmin=parseEur(PFIL.pmin),pmax=parseEur(PFIL.pmax);return PRODS.filter(p=>{const v=+p.price||0;if(pmin!==null&&v<pmin)return false;if(pmax!==null&&v>pmax)return false;if(PFIL.dmin&&(!p.date||p.date<PFIL.dmin))return false;if(PFIL.dmax&&(!p.date||p.date>PFIL.dmax))return false;return true}).sort((a,b)=>(a.date||"")<(b.date||"")?1:(a.date||"")>(b.date||"")?-1:0)}
 function prList(){const list=prFiltered(),tot=list.reduce((s,p)=>s+(+p.price||0),0),fil=list.length!==PRODS.length;
  $("prsum").innerHTML=`<div class="kpi"><b>${eur2(PS())}</b><span>Gasto total en productos</span><small>${PRODS.length}${PRODS.length===1?" producto en total":" productos en total"}</small></div><div class="kpi"><b>${eur2(tot)}</b><span>Gastado con los filtros</span><small>${fil?list.length+(list.length===1?" producto mostrado":" productos mostrados"):"sin filtros aplicados"}</small></div>`;
- $("prlist").innerHTML=list.length?`<div class="prl">${list.map(p=>`<div class="prr"><div class="prp" data-img="${esc(p.id)}">${PIMG[p.id]?`<img src="${PIMG[p.id]}" alt="Ver en grande" title="Ver en grande">`:"<span>🛍️</span>"}</div><div class="prn"><b>${esc(p.name)}${p.lang&&LN[p.lang]?" "+flagSvg(p.lang):""}</b><small>${prodSet(p)}</small><small>${p.date?fdt(p.date):""}${p.note?(p.date?" · ":"")+esc(p.note):""}</small></div><div class="prq"><b>${eur2(+p.price||0)}</b><button type="button" class="prb" data-edit="${esc(p.id)}">Editar</button></div></div>`).join("")}</div>`:`<p class="mut">${PRODS.length?"Ningún producto cumple los filtros.":"Todavía no has añadido ningún producto. Pulsa «Añadir producto»."}</p>`}
+ $("prlist").innerHTML=list.length?`<div class="prl">${list.map(p=>`<div class="prr"><div class="prp" data-img="${esc(p.id)}">${PIMG[p.id]?`<img src="${PIMG[p.id]}" alt="Ver en grande" title="Ver en grande">`:"<span class=\"pbag\"><svg viewBox=\"0 0 24 24\" aria-hidden=\"true\"><path d=\"M6 7h12l1 13H5zM9 7a3 3 0 0 1 6 0\"/></svg></span>"}</div><div class="prn"><b>${esc(p.name)}${p.lang&&LN[p.lang]?" "+flagSvg(p.lang):""}</b><small>${prodSet(p)}</small><small>${p.date?fdt(p.date):""}${p.note?(p.date?" · ":"")+esc(p.note):""}</small></div><div class="prq"><b>${eur2(+p.price||0)}</b><button type="button" class="prb" data-edit="${esc(p.id)}">Editar</button></div></div>`).join("")}</div>`:`<p class="mut">${PRODS.length?"Ningún producto cumple los filtros.":"Todavía no has añadido ningún producto. Pulsa «Añadir producto»."}</p>`}
 function renderPrd(){if($("prd").hidden)return;
  $("prdbody").innerHTML=`<div class="stin"><div class="kpis" id="prsum"></div><div class="stc"><h3>Filtros</h3><div class="prf"><label>Precio mínimo (€)<input id="f-pmin" type="text" inputmode="decimal" autocomplete="off" value="${esc(PFIL.pmin)}" placeholder="0"></label><label>Precio máximo (€)<input id="f-pmax" type="text" inputmode="decimal" autocomplete="off" value="${esc(PFIL.pmax)}" placeholder="Sin límite"></label><label>Fecha desde<input id="f-dmin" type="date" value="${esc(PFIL.dmin)}"></label><label>Fecha hasta<input id="f-dmax" type="date" value="${esc(PFIL.dmax)}"></label><button type="button" id="prclr">Limpiar filtros</button></div></div><div class="stc"><h3>Mis productos</h3><div id="prlist"></div></div></div>`;prList()}
 function prodBig(id){const p=PRODS.find(x=>x.id===id);if(!p||!PIMG[id])return;$("ldlg").classList.add("bt");$("lt").textContent=p.name;$("lb").innerHTML=`<div class="holo nogl"><img class="bigfoto" src="${PIMG[id]}" alt=""></div>`;$("ldlg").showModal()}
@@ -1436,6 +1502,22 @@ function tabPen(){const o=OWN().sort((a,b)=>String(a.dex||"").localeCompare(Stri
  nav.innerHTML=["albbtn","vtbtn","stbtn","prbtn","shbtn"].map(id=>`<button type="button" data-b="${id}"${id==="vtbtn"?' class="bg"':id==="shbtn"?' class="bsh"':""}>${id==="shbtn"?"<i>📤</i>":svg(ico[id])}<span>${names[id]}</span></button>`).join("");
  document.body.appendChild(nav);nav.onclick=e=>{const b=e.target.closest("button");if(b)document.getElementById(b.dataset.b).click()};
 })();
+
+/* ---- Mejoras estéticas v2: fundido de imágenes, tema y mini título ---- */
+(function(){const mark=i=>{if(i.complete&&i.naturalWidth)return;i.classList.add("ldg");setTimeout(()=>i.classList.remove("ldg"),4000)},done=i=>i.classList.remove("ldg");
+ document.addEventListener("load",e=>{if(e.target&&e.target.tagName==="IMG")done(e.target)},true);document.addEventListener("error",e=>{if(e.target&&e.target.tagName==="IMG")done(e.target)},true);
+ new MutationObserver(ms=>ms.forEach(m=>{if(m.type==="attributes"){if(m.target.tagName==="IMG")mark(m.target);return}m.addedNodes.forEach(n=>{if(n.nodeType!==1)return;(n.tagName==="IMG"?[n]:[...n.querySelectorAll("img")]).forEach(mark)})})).observe(document.documentElement,{childList:true,subtree:true,attributes:true,attributeFilter:["src"]})})();
+(function(){const b=document.createElement("button");b.id="thbtn";b.type="button";b.setAttribute("aria-label","Cambiar entre modo claro y oscuro");
+ b.innerHTML='<svg class="su" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg><svg class="mo" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 14.5A8 8 0 0 1 9.5 4 8 8 0 1 0 20 14.5z"/></svg>';
+ document.body.appendChild(b);
+ b.onclick=()=>{const r=document.documentElement,dark=r.getAttribute("data-theme")?r.getAttribute("data-theme")==="dark":matchMedia("(prefers-color-scheme:dark)").matches,n=dark?"light":"dark";r.setAttribute("data-theme",n);try{localStorage.setItem("pokecards-theme-v1",n)}catch(e){}}})();
+(function(){const m=document.createElement("div");m.id="mini";m.setAttribute("aria-hidden","true");document.body.appendChild(m);let t=0;
+ const nm={dex:"Pokédex",reg:"Formas regionales",leg:"Legendarios",par:"Paradoja"};
+ const upd=()=>{t=0;const on=scrollY>300&&!document.body.classList.contains("albopen")&&!document.querySelector("dialog[open]");m.classList.toggle("on",on);if(!on)return;
+  const o=all.filter(c=>c.owned).length,p=all.length?o/all.length*100:0,sec=S.view?(nm[S.view]+(S.view==="dex"&&S.gen!=="all"?" · Gen "+S.gen.replace("GEN ",""):"")):"Mi colección";
+  const gb=S.view==="dex"&&S.gen!=="all";m.innerHTML=`<b>${sec}</b>${gb?`<button type="button" class="mgo"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 15l6-6 6 6"/></svg>Generaciones</button>`:""}<span class="${gb?"mp":""}">${o} / ${all.length} · ${p.toLocaleString("es-ES",{minimumFractionDigits:2,maximumFractionDigits:2})} %</span>`};
+ m.onclick=e=>{if(e.target.closest(".mgo"))document.getElementById("gens").scrollIntoView({behavior:"smooth",block:"start"})};
+ addEventListener("scroll",()=>{if(!t)t=requestAnimationFrame(upd)},{passive:true})})();
 </script>
 </body>
 </html>
