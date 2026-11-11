@@ -452,7 +452,7 @@ dialog,.alb{overscroll-behavior:contain}
 @media(max-width:560px){.spcd{width:64px;height:90px;opacity:.7}.spcd.c3,.spcd.c4{display:none}.spi h1 span{font-size:30px}}
 @media(prefers-reduced-motion:reduce){.spstars,.spcd,.spball,.spgo::after{animation:none}}
 #splash{transition:opacity .3s ease}#splash.out{opacity:0;pointer-events:none}#splash.kb{padding-bottom:55vh}
-@keyframes spin{from{opacity:0}to{opacity:1}}#splash:not(.out){animation:spin .35s ease}
+@keyframes spin{from{opacity:0}to{opacity:1}}#splash:not(.out) .spi{animation:spin .35s ease}
 #gstats,#nav{scroll-margin-top:10px}
 .fclr{display:block;margin:8px 0 4px auto;background:transparent;border:1px solid var(--line);color:var(--ink);border-radius:99px;padding:6px 14px;font:inherit;font-size:13px;cursor:pointer}.fclr:hover{background:var(--bg)}.fclr[hidden]{display:none}
 .stb{position:absolute;right:6px;top:6px;width:22px;height:22px;border-radius:50%;display:flex;align-items:center;justify-content:center;box-shadow:0 1px 3px rgba(0,0,0,.4);z-index:2}.stb.def{background:#1f8a4c}.stb.prov{background:#d9822b}.stb svg{width:13px;height:13px;stroke:#fff;fill:none;stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round}
@@ -644,6 +644,11 @@ body.albopen #thbtn{display:none}
 .stbody .vb{background-image:repeating-linear-gradient(to top,transparent 0,transparent calc(25% - 1px),rgba(26,22,51,.1) calc(25% - 1px),rgba(26,22,51,.1) 25%)}
 .stbody .rgi small{color:#6b6785}
 #vdlg #vbody{padding-top:24px}
+.gfab{position:fixed;left:14px;bottom:calc(env(safe-area-inset-bottom,0px) + 16px);z-index:19;display:inline-flex;align-items:center;gap:6px;padding:9px 15px 9px 10px;border-radius:99px;border:1px solid var(--line);background:color-mix(in srgb,var(--panel) 92%,transparent);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);color:var(--ink);font:600 13px "DM Sans",system-ui,sans-serif;box-shadow:var(--sh1);cursor:pointer;opacity:0;pointer-events:none;transform:translateY(14px);transition:opacity .25s,transform .25s var(--ease)}
+.gfab svg{width:16px;height:16px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}.gfab.on{opacity:1;pointer-events:auto;transform:none}
+@media(max-width:700px){.gfab{bottom:calc(env(safe-area-inset-bottom,0px) + 96px)}}
+body.albopen .gfab,body:has(.tlist:not([hidden])) .gfab,body:has(input:focus,textarea:focus) .gfab{display:none}
+.spread:has(.aempty)::after{display:none}.aempty{background:linear-gradient(180deg,#131317,#0b0b0e);color:#d8d6e3}
 </style>
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@700&display=swap">
 </head>
@@ -1513,10 +1518,11 @@ function tabPen(){const o=OWN().sort((a,b)=>String(a.dex||"").localeCompare(Stri
  b.onclick=()=>{const r=document.documentElement,dark=r.getAttribute("data-theme")?r.getAttribute("data-theme")==="dark":matchMedia("(prefers-color-scheme:dark)").matches,n=dark?"light":"dark";r.setAttribute("data-theme",n);try{localStorage.setItem("pokecards-theme-v1",n)}catch(e){}}})();
 (function(){const m=document.createElement("div");m.id="mini";m.setAttribute("aria-hidden","true");document.body.appendChild(m);let t=0;
  const nm={dex:"Pokédex",reg:"Formas regionales",leg:"Legendarios",par:"Paradoja"};
- const upd=()=>{t=0;const on=scrollY>300&&!document.body.classList.contains("albopen")&&!document.querySelector("dialog[open]");m.classList.toggle("on",on);if(!on)return;
+ const gf=document.createElement("button");gf.type="button";gf.className="gfab";gf.innerHTML='<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 15l6-6 6 6"/></svg>Generaciones';document.body.appendChild(gf);gf.onclick=()=>document.getElementById("gens").scrollIntoView({behavior:"smooth",block:"start"});
+ const upd=()=>{t=0;const on=scrollY>300&&!document.body.classList.contains("albopen")&&!document.querySelector("dialog[open]");m.classList.toggle("on",on);if(!on){gf.classList.remove("on");return}
   const o=all.filter(c=>c.owned).length,p=all.length?o/all.length*100:0,sec=S.view?(nm[S.view]+(S.view==="dex"&&S.gen!=="all"?" · Gen "+S.gen.replace("GEN ",""):"")):"Mi colección";
-  const gb=S.view==="dex"&&S.gen!=="all";m.innerHTML=`<b>${sec}</b>${gb?`<button type="button" class="mgo"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 15l6-6 6 6"/></svg>Generaciones</button>`:""}<span class="${gb?"mp":""}">${o} / ${all.length} · ${p.toLocaleString("es-ES",{minimumFractionDigits:2,maximumFractionDigits:2})} %</span>`};
- m.onclick=e=>{if(e.target.closest(".mgo"))document.getElementById("gens").scrollIntoView({behavior:"smooth",block:"start"})};
+  const gb=S.view==="dex"&&S.gen!=="all";gf.classList.toggle("on",gb);m.innerHTML=`<b>${sec}</b><span>${o} / ${all.length} · ${p.toLocaleString("es-ES",{minimumFractionDigits:2,maximumFractionDigits:2})} %</span>`};
+ 
  addEventListener("scroll",()=>{if(!t)t=requestAnimationFrame(upd)},{passive:true})})();
 </script>
 </body>
