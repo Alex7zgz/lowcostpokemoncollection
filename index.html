@@ -649,6 +649,10 @@ body.albopen #thbtn{display:none}
 @media(max-width:700px){.gfab{bottom:calc(env(safe-area-inset-bottom,0px) + 96px)}}
 body.albopen .gfab,body:has(.tlist:not([hidden])) .gfab,body:has(input:focus,textarea:focus) .gfab{display:none}
 .spread:has(.aempty)::after{display:none}.aempty{background:linear-gradient(180deg,#131317,#0b0b0e);color:#d8d6e3}
+#dlg .row #close{margin-left:auto}
+@media(max-width:759px){#dlg:not(.wide):has(#ed[hidden])>.row #close{margin-left:auto}}
+#ldlg #lclose{display:block;margin-left:auto;margin-right:20px}
+.ytp{transition:opacity .4s ease,visibility .4s ease}.ytp.ytpgone{opacity:0;visibility:hidden;pointer-events:none}
 </style>
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@700&display=swap">
 </head>
@@ -1524,6 +1528,12 @@ function tabPen(){const o=OWN().sort((a,b)=>String(a.dex||"").localeCompare(Stri
   const gb=S.view==="dex"&&S.gen!=="all";gf.classList.toggle("on",gb);m.innerHTML=`<b>${sec}</b><span>${o} / ${all.length} · ${p.toLocaleString("es-ES",{minimumFractionDigits:2,maximumFractionDigits:2})} %</span>`};
  
  addEventListener("scroll",()=>{if(!t)t=requestAnimationFrame(upd)},{passive:true})})();
+
+/* radio: la ventanita se oculta a los 5 s de encenderla; y móvil: al tocar el buscador se sube para verlo entero */
+(function(){const y=document.querySelector(".ytp");if(y){const arm=()=>{clearTimeout(y._t);y.classList.remove("ytpgone");y._t=setTimeout(()=>y.classList.add("ytpgone"),5000)},clr=()=>{clearTimeout(y._t);y.classList.remove("ytpgone")};
+ const _mu=musica;musica=function(on){const r=_mu(on);if(on)arm();else clr();return r};
+ const _fa=fail;fail=function(){_fa();arm()}}
+ const q=document.getElementById("q");if(q)q.addEventListener("focus",()=>{if(!matchMedia("(hover:none)").matches&&innerWidth>700)return;setTimeout(()=>{const b=document.getElementById("sbox");if(b&&!b.hidden)b.scrollIntoView({behavior:"smooth",block:"start"})},220)})})();
 </script>
 </body>
 </html>
